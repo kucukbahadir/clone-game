@@ -5,11 +5,20 @@ using UnityEngine;
 public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
+    [SerializeField] private bool interruptible;
 
-    public abstract void TakeAction<T>(T value);
+    protected bool _isBusy;
+    protected Action _OnActionComplete;
+
+    public abstract void TakeAction(Action OnActionComplete);
 
     public ActionTypes GetActionType()
     {
         return actionType;
+    }
+
+    public bool IsInterruptible()
+    {
+        return interruptible;
     }
 }

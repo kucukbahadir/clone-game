@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviourSingleton<InputHandler>
 {
-    public EventHandler<ActionEventArgs<object>> OnAnyInput;
+    public EventHandler<ActionEventArgs> OnAnyInput;
     private PlayerInputMap _playerInputMap;
 
     protected override void Awake()
@@ -27,16 +27,20 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
 
     private void HandleMovementInput()
     {
-        var inputValue = _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
-        if(inputValue == Vector2.zero) return;
-        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(inputValue, ActionTypes.Move));
+        if(_playerInputMap.Gameplay.Move.ReadValue<Vector2>() == Vector2.zero) return;
+        OnAnyInput?.Invoke(this, new ActionEventArgs(ActionTypes.Move));
     }
 
     private void HandleCloneInput()
     {
         if (!_playerInputMap.Gameplay.Clone.WasPressedThisFrame()) return;
 
-        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.Clone));
+        OnAnyInput?.Invoke(this, new ActionEventArgs(ActionTypes.Clone));
+    }
+
+    public Vector2 GetMoveValue()
+    {
+        return _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
     }
 
     private void OnDisable()

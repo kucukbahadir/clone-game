@@ -1,14 +1,12 @@
 using System;
 using UnityEngine;
 
-public class ActionEventArgs<T> : EventArgs
+public class ActionEventArgs : EventArgs
 {
-    public T Value;
     public ActionTypes ActionType;
 
-    public ActionEventArgs(T value, ActionTypes actionType)
+    public ActionEventArgs(ActionTypes actionType)
     {
-        Value = value;
         ActionType = actionType;
     }
 }

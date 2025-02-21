@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class UnitManager : MonoBehaviour
         InputHandler.Instance.OnAnyInput += OnInput;
     }
 
-    public void OnInput(object sender, ActionEventArgs<object> actionEventArgs)
+    public void OnInput(object sender, ActionEventArgs actionEventArgs)
     {
         currentUnit.TryDoingAction(actionEventArgs);
     }

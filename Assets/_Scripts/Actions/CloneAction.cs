@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class CloneAction : BaseAction
 {
-    public override void TakeAction<T>(T value)
+    public override void TakeAction(Action OnActionComplete)
     {
-        print(value);
+        _OnActionComplete = OnActionComplete;
+        print("Clone");
+        _OnActionComplete?.Invoke();
     }
 }
