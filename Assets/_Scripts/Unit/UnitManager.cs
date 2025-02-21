@@ -4,13 +4,13 @@ public class UnitManager : MonoBehaviour
 {
     [SerializeField] private BaseUnit currentUnit;
 
-    public void OnMoveInput(Vector2 inputValue, ActionTypes actionType)
+    void Start()
     {
-        currentUnit.TryDoingAction(inputValue, actionType);
+        InputHandler.Instance.OnAnyInput += OnInput;
     }
 
-    private void DoSomething(int test)
+    public void OnInput(object sender, ActionEventArgs<object> actionEventArgs)
     {
-        print(test);
+        currentUnit.TryDoingAction(actionEventArgs.Value, actionEventArgs.ActionType);
     }
 }

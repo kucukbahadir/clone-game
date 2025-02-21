@@ -2,13 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviourSingleton<InputHandler>
 {
     public EventHandler<ActionEventArgs<object>> OnAnyInput;
     private PlayerInputMap _playerInputMap;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _playerInputMap = new PlayerInputMap();
     }
 
@@ -34,7 +36,7 @@ public class InputHandler : MonoBehaviour
     {
         if (!_playerInputMap.Gameplay.Clone.WasPressedThisFrame()) return;
 
-        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.move));
+        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.clone));
     }
 
     private void OnDisable()
