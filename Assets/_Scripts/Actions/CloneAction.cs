@@ -15,6 +15,8 @@ public class CloneAction : BaseAction
         StartCoroutine(TestCo());
     }
 
+    public override string ToString => "CloneAction";
+
     IEnumerator TestCo()
     {
         yield return new WaitForSeconds(5f);
