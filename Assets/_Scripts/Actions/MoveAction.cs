@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    public override void TakeAction<T>(T value, ActionTypes actionType)
+    private Vector3 _moveDir;
+
+    public override void TakeAction<T>(T value)
     {
         print(value);
-        print(actionType);
     }
 }

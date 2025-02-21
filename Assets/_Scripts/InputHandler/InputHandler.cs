@@ -29,14 +29,14 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
     {
         var inputValue = _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
         if(inputValue == Vector2.zero) return;
-        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(inputValue, ActionTypes.move));
+        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(inputValue, ActionTypes.Move));
     }
 
     private void HandleCloneInput()
     {
         if (!_playerInputMap.Gameplay.Clone.WasPressedThisFrame()) return;
 
-        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.clone));
+        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.Clone));
     }
 
     private void OnDisable()

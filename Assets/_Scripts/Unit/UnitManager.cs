@@ -11,6 +11,6 @@ public class UnitManager : MonoBehaviour
 
     public void OnInput(object sender, ActionEventArgs<object> actionEventArgs)
     {
-        currentUnit.TryDoingAction(actionEventArgs.Value, actionEventArgs.ActionType);
+        currentUnit.TryDoingAction(actionEventArgs);
     }
 }

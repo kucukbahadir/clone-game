@@ -9,13 +9,13 @@ public class BaseUnit : MonoBehaviour
         _unitActions = GetComponents<BaseAction>();
     }
 
-    public void TryDoingAction<T>(T value,ActionTypes actionType)
+    public void TryDoingAction(ActionEventArgs<object> actionEventArgs)
     {
         foreach (var action in _unitActions)
         {
-            if(action.GetActionType() != actionType) continue;
+            if(action.GetActionType() != actionEventArgs.ActionType) continue;
 
-            action.TakeAction(value, actionType);
+            action.TakeAction(actionEventArgs.Value);
         }
     }
 }

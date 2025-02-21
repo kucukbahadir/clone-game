@@ -6,7 +6,7 @@ public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
 
-    public abstract void TakeAction<T>(T value, ActionTypes actionType);
+    public abstract void TakeAction<T>(T value);
 
     public ActionTypes GetActionType()
     {
