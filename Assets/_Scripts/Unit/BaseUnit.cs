@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    private BaseAction[] _unitActions;
 
-    public void Move(Vector2 moveDirection)
+    void Awake()
     {
-        transform.Translate(new Vector3(moveDirection.x,0,moveDirection.y) * moveSpeed * Time.deltaTime);
+        _unitActions = GetComponents<BaseAction>();
     }
 
-    
+    public void TryDoingAction<T>(T value,ActionTypes actionType)
+    {
+        foreach (var action in _unitActions)
+        {
+            if(action.GetActionType() != actionType) continue;
+
+            action.TakeAction(value, actionType);
+        }
+    }
 }

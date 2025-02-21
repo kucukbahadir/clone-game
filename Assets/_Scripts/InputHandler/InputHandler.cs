@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviour
 {
-    public UnityEvent<Vector2> OnMove;
+    public EventHandler<ActionEventArgs<object>> OnAnyInput;
     private PlayerInputMap _playerInputMap;
 
     private void Awake()
@@ -19,13 +20,21 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         HandleMovementInput();
+        HandleCloneInput();
     }
 
     private void HandleMovementInput()
     {
         var inputValue = _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
         if(inputValue == Vector2.zero) return;
-        OnMove?.Invoke(inputValue);
+        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(inputValue, ActionTypes.move));
+    }
+
+    private void HandleCloneInput()
+    {
+        if (!_playerInputMap.Gameplay.Clone.WasPressedThisFrame()) return;
+
+        OnAnyInput?.Invoke(this, new ActionEventArgs<object>(null, ActionTypes.move));
     }
 
     private void OnDisable()
