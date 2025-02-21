@@ -22,6 +22,4 @@ public abstract class BaseAction : MonoBehaviour
     {
         return interruptible;
     }
-
-    public abstract string ToString();
 }

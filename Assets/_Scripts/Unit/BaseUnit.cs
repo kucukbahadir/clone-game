@@ -30,4 +30,9 @@ public class BaseUnit : MonoBehaviour
     {
         currentAction = null;
     }
+
+    public BaseAction GetCurrentAction()
+    {
+        return currentAction;
+    }
 }

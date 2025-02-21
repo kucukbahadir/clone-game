@@ -37,5 +37,8 @@ public class MoveAction : BaseAction
         _rigidBody.linearVelocity = new Vector3(_moveDirection.x,0,_moveDirection.y) * speed * Time.fixedDeltaTime;
     }
 
-    public override string ToString => "MoveAction";
+    public new string ToString()
+    {
+        return "MoveAction";
+    }
 }
