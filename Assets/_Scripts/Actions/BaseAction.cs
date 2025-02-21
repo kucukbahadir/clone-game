@@ -2,6 +2,7 @@ using System;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
