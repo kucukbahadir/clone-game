@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    private BaseAction[] _unitActions;
-    private BaseAction currentAction;
+    protected BaseAction[] _unitActions;
+    protected BaseAction currentAction;
 
-    void Awake()
+    protected void Awake()
     {
         _unitActions = GetComponents<BaseAction>();
     }
@@ -26,7 +26,7 @@ public class BaseUnit : MonoBehaviour
         currentAction.TakeAction(OnActionComplete);
     }
 
-    private void OnActionComplete()
+    protected void OnActionComplete()
     {
         currentAction = null;
     }

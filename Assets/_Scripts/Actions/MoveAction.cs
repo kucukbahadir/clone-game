@@ -34,6 +34,6 @@ public class MoveAction : BaseAction
 
     private void FixedUpdate()
     {
-        _rigidBody.linearVelocity = new Vector3(_moveDirection.x,0,_moveDirection.y) * speed;
+        _rigidBody.linearVelocity = new Vector3(_moveDirection.x,0,_moveDirection.y) * speed * Time.fixedDeltaTime;
     }
 }
