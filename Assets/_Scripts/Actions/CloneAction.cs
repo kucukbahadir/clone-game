@@ -17,14 +17,9 @@ public class CloneAction : BaseAction
 
     IEnumerator TestCo()
     {
-        print("CLoning");
-        yield return new WaitForSeconds(5f);
-        print("CLoning done");
+        print("Cloning");
+        yield return new WaitForSeconds(2f);
+        print("Cloning done");
         _OnActionComplete?.Invoke();
-    }
-
-    public new string ToString()
-    {
-        return "CloneAction";
     }
 }

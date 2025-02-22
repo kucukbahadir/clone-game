@@ -12,18 +12,13 @@ public class BaseUnit : MonoBehaviour
 
     public void TryDoingAction(ActionEventArgs actionEventArgs)
     {
-        if (currentAction != null && !currentAction.IsInterruptible()) return;
+        if (!CurrentActionIsNull() && !currentAction.IsInterruptible()) return;
 
         foreach (var action in _unitActions)
         {
-            //current is move
-            // new is clone
             if(action.GetActionType() != actionEventArgs.ActionType || currentAction == action) continue;
-            print("Interrupted");
 
-            //de actie is geinterruped dus zorg dat de current stopt met zijn logica
-            //daarna word de current de nieuwe actie
-            if(currentAction != null)
+            if(!CurrentActionIsNull())
             {
                 currentAction.ActionGotInterrupted();
             }
@@ -31,7 +26,7 @@ public class BaseUnit : MonoBehaviour
             break;
         }
 
-        if (currentAction == null) return;
+        if (CurrentActionIsNull()) return;
         currentAction.TakeAction(OnActionComplete);
     }
 
@@ -43,5 +38,10 @@ public class BaseUnit : MonoBehaviour
     public BaseAction GetCurrentAction()
     {
         return currentAction;
+    }
+
+    private bool CurrentActionIsNull()
+    {
+        return currentAction == null;
     }
 }

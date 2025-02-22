@@ -37,11 +37,6 @@ public class MoveAction : BaseAction
         _rigidBody.linearVelocity = new Vector3(_moveDirection.x,0,_moveDirection.y) * speed * Time.fixedDeltaTime;
     }
 
-    public new string ToString()
-    {
-        return "MoveAction";
-    }
-
     public override void ActionGotInterrupted()
     {
         _isBusy = false;

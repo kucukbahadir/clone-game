@@ -25,4 +25,9 @@ public abstract class BaseAction : MonoBehaviour
 
     public virtual void ActionGotInterrupted(){}
 
+    public new string ToString()
+    {
+        return this.GetType().Name;
+    }
+
 }
