@@ -1,5 +1,6 @@
 using System;
 using Unity.IO.LowLevel.Unsafe;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 [DisallowMultipleComponent]

@@ -9,17 +9,15 @@ public class CloneAction : BaseAction
     {
         _OnActionComplete = OnActionComplete;
         
-        // var pos = UnityEngine.Random.insideUnitSphere * 5;
-        // Instantiate(unitClonePrefab, new Vector3(pos.x,0,pos.z), Quaternion.identity);
+         var pos = UnityEngine.Random.insideUnitSphere * 5;
+         Instantiate(unitClonePrefab, new Vector3(pos.x,0,pos.z), Quaternion.identity);
 
         StartCoroutine(TestCo());
     }
 
     IEnumerator TestCo()
     {
-        print("Cloning");
-        yield return new WaitForSeconds(2f);
-        print("Cloning done");
+        yield return new WaitForSeconds(1f);
         _OnActionComplete?.Invoke();
     }
 }
