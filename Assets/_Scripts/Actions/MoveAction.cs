@@ -41,4 +41,11 @@ public class MoveAction : BaseAction
     {
         return "MoveAction";
     }
+
+    public override void ActionGotInterrupted()
+    {
+        _isBusy = false;
+        _moveDirection = Vector2.zero;
+        _OnActionComplete?.Invoke();
+    }
 }

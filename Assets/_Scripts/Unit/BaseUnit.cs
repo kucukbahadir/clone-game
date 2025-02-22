@@ -16,8 +16,17 @@ public class BaseUnit : MonoBehaviour
 
         foreach (var action in _unitActions)
         {
-            if(action.GetActionType() != actionEventArgs.ActionType || currentAction != null && currentAction == action) continue;
+            //current is move
+            // new is clone
+            if(action.GetActionType() != actionEventArgs.ActionType || currentAction == action) continue;
+            print("Interrupted");
 
+            //de actie is geinterruped dus zorg dat de current stopt met zijn logica
+            //daarna word de current de nieuwe actie
+            if(currentAction != null)
+            {
+                currentAction.ActionGotInterrupted();
+            }
             currentAction = action;
             break;
         }

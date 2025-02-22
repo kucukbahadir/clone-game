@@ -22,4 +22,7 @@ public abstract class BaseAction : MonoBehaviour
     {
         return interruptible;
     }
+
+    public virtual void ActionGotInterrupted(){}
+
 }
