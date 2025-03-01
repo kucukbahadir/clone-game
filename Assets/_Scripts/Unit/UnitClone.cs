@@ -1,9 +1,13 @@
+using System;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class UnitClone : BaseUnit
 {
+    public static EventHandler OnUnitCloneSpawn;
+
     void Start()
     {
-        print(_unitActions.Length);
+        OnUnitCloneSpawn?.Invoke(this, null);
     }
 }
