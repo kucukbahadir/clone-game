@@ -6,8 +6,9 @@ public class UnitClone : BaseUnit
 {
     public static EventHandler OnUnitCloneSpawn;
 
-    void Start()
+    protected override void Awake()
     {
-        OnUnitCloneSpawn?.Invoke(this, null);
+        base.Awake();
+        OnUnitCloneSpawn?.Invoke(this, null);     
     }
 }

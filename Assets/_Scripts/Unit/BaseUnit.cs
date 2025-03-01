@@ -6,7 +6,7 @@ public class BaseUnit : MonoBehaviour
     protected BaseAction[] _unitActions;
     protected BaseAction currentAction;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _unitActions = GetComponents<BaseAction>();
     }
@@ -19,10 +19,8 @@ public class BaseUnit : MonoBehaviour
         {
             if(action.GetActionType() != actionEventArgs.ActionType || currentAction == action) continue;
 
-            if(!CurrentActionIsNull())
-            {
-                currentAction.ActionGotInterrupted();
-            }
+            if(!CurrentActionIsNull()) currentAction.ActionGotInterrupted();
+ 
             currentAction = action;
             break;
         }

@@ -6,7 +6,7 @@ public class UnitManager : MonoBehaviour
 {
     [SerializeField] private BaseUnit currentUnit;
 
-    [SerializeField]private List<BaseUnit> units;
+    private List<BaseUnit> units;
 
     void Start()
     {
