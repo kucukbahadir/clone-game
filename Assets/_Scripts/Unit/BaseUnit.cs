@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
@@ -12,7 +13,7 @@ public class BaseUnit : MonoBehaviour
 
     public void TryDoingAction(ActionEventArgs actionEventArgs)
     {
-        if (!CurrentActionIsNull() && !currentAction.IsInterruptible()) return;
+        if (!CurrentActionIsNull() && !CurrentACtionIsInterruptible()) return;
 
         foreach (var action in _unitActions)
         {
@@ -35,13 +36,23 @@ public class BaseUnit : MonoBehaviour
         currentAction = null;
     }
 
+    public void OnSwitchUnit()
+    {
+        currentAction.ActionGotInterrupted();
+    }
+
     public BaseAction GetCurrentAction()
     {
         return currentAction;
     }
 
-    private bool CurrentActionIsNull()
+    public bool CurrentActionIsNull()
     {
         return currentAction == null;
+    }
+
+    public bool CurrentACtionIsInterruptible()
+    {
+        return currentAction.IsInterruptible();
     }
 }

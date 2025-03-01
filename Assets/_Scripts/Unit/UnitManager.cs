@@ -12,19 +12,54 @@ public class UnitManager : MonoBehaviour
     {
         units = new List<BaseUnit>{currentUnit};
 
-        InputHandler.Instance.OnAnyInput += OnInput;
+        InputHandler.Instance.OnAnyActionInput += OnInput;
+        InputHandler.Instance.OnSwitchUnitInput += OnSwitchUnitInput;
         UnitClone.OnUnitCloneSpawn += OnUnitCloneSpawn;
     }
 
-    public void OnInput(object sender, ActionEventArgs actionEventArgs)
+    private void OnInput(object sender, ActionEventArgs actionEventArgs)
     {
         currentUnit.TryDoingAction(actionEventArgs);
     }
 
-    public void OnUnitCloneSpawn(object sender, EventArgs actionEventArgs)
+    private void OnUnitCloneSpawn(object sender, EventArgs args)
     {
         var cloneUnit = (BaseUnit)sender;
         units.Add(cloneUnit);
         currentUnit = cloneUnit;
+    }
+
+    private void OnSwitchUnitInput(object sender, EventArgs args)
+    {
+        var currentUnitIndex = GetCurrentUnitIndex();
+        var newCurrentUnit = GetNextUnit(currentUnitIndex);
+
+        if (currentUnit.CurrentActionIsNull())
+        {
+            currentUnit = newCurrentUnit;
+        }
+        else if(currentUnit.CurrentACtionIsInterruptible())
+        {
+            currentUnit.OnSwitchUnit();
+            currentUnit = newCurrentUnit;
+        }
+    }
+
+    private int GetCurrentUnitIndex()
+    {
+        var currentIndex = 0;
+        for (var i = 0; i < units.Count; i++)
+        {
+            if (currentUnit != units[i]) continue;
+            currentIndex = i;
+            break;
+        }
+
+        return currentIndex;
+    }
+
+    private BaseUnit GetNextUnit(int currentIndex)
+    {
+        return currentIndex + 1 == units.Count ? units[0]: units[currentIndex + 1];
     }
 }
