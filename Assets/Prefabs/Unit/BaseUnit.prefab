@@ -882,6 +882,7 @@ GameObject:
   - component: {fileID: 1641211464868312564}
   - component: {fileID: 1402859618946454280}
   - component: {fileID: 3591304426796055933}
+  - component: {fileID: 4240215822069298253}
   m_Layer: 5
   m_Name: ActionDebugUI
   m_TagString: Untagged
@@ -986,6 +987,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 8722083609150209537}
   actionDebugText: {fileID: 8992840518530084830}
+  UseDebugUI: 1
+--- !u!114 &4240215822069298253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309798702195311456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82df13a502ba1a0438b58e19e77b52e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invert: 0
 --- !u!1 &8614399176898469063
 GameObject:
   m_ObjectHideFlags: 0

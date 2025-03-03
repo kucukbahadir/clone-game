@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 2210476781062363917}
   - component: {fileID: 4791645979669110436}
   - component: {fileID: 7838039426349728050}
+  - component: {fileID: 7790533833653550039}
   m_Layer: 5
   m_Name: ActionDebugUI
   m_TagString: Untagged
@@ -363,6 +364,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 850289931318628454}
   actionDebugText: {fileID: 6443081294057523693}
+  UseDebugUI: 1
+--- !u!114 &7790533833653550039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169439835560992547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82df13a502ba1a0438b58e19e77b52e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invert: 0
 --- !u!1 &4185516122245272929
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,3 +468,4 @@ MonoBehaviour:
   actionType: 0
   interruptible: 1
   speed: 400
+  rotateSpeed: 0
