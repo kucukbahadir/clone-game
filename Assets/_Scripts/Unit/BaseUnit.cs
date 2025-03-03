@@ -13,7 +13,7 @@ public class BaseUnit : MonoBehaviour
 
     public void TryDoingAction(ActionEventArgs actionEventArgs)
     {
-        if (!CurrentActionIsNull() && !CurrentACtionIsInterruptible()) return;
+        if (!CurrentActionIsNull() && !CurrentActionIsInterruptible()) return;
 
         foreach (var action in _unitActions)
         {
@@ -37,5 +37,5 @@ public class BaseUnit : MonoBehaviour
 
     public bool CurrentActionIsNull() => currentAction == null;
 
-    public bool CurrentACtionIsInterruptible() => currentAction.IsInterruptible();
+    public bool CurrentActionIsInterruptible() => currentAction.IsInterruptible();
 }

@@ -38,7 +38,7 @@ public class UnitManager : MonoBehaviour
         {
             currentUnit = newCurrentUnit;
         }
-        else if(currentUnit.CurrentACtionIsInterruptible())
+        else if(currentUnit.CurrentActionIsInterruptible())
         {
             currentUnit.OnSwitchUnit();
             currentUnit = newCurrentUnit;
