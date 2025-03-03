@@ -15,10 +15,8 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
         _playerInputMap = new PlayerInputMap();
     }
 
-    private void OnEnable()
-    {
-        _playerInputMap.Enable();    
-    }
+    private void OnEnable() => _playerInputMap.Enable();
+
 
     private void Update()
     {
@@ -47,13 +45,7 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
         OnSwitchUnitInput?.Invoke(this,null);
     }
 
-    public Vector2 GetMoveValue()
-    {
-        return _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
-    }
+    public Vector2 GetMoveValue() => _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
 
-    private void OnDisable()
-    {
-        _playerInputMap.Disable();
-    }
+    private void OnDisable() => _playerInputMap.Disable();
 }

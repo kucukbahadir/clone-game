@@ -58,8 +58,5 @@ public class UnitManager : MonoBehaviour
         return currentIndex;
     }
 
-    private BaseUnit GetNextUnit(int currentIndex)
-    {
-        return currentIndex + 1 == units.Count ? units[0]: units[currentIndex + 1];
-    }
+    private BaseUnit GetNextUnit(int currentIndex) => currentIndex + 1 == units.Count ? units[0]: units[currentIndex + 1];
 }

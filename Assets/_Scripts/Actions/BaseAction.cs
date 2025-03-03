@@ -14,21 +14,12 @@ public abstract class BaseAction : MonoBehaviour
 
     public abstract void TakeAction(Action OnActionComplete);
 
-    public ActionTypes GetActionType()
-    {
-        return actionType;
-    }
+    public ActionTypes GetActionType() =>actionType;
 
-    public bool IsInterruptible()
-    {
-        return interruptible;
-    }
+    public bool IsInterruptible() => interruptible;
 
     public virtual void ActionGotInterrupted(){}
 
-    public new string ToString()
-    {
-        return this.GetType().Name;
-    }
+    public new string ToString() => this.GetType().Name;
 
 }

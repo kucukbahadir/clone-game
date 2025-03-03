@@ -29,28 +29,13 @@ public class BaseUnit : MonoBehaviour
         currentAction.TakeAction(OnActionComplete);
     }
 
-    protected void OnActionComplete()
-    {
-        currentAction = null;
-    }
+    protected void OnActionComplete() => currentAction = null;
 
-    public void OnSwitchUnit()
-    {
-        currentAction.ActionGotInterrupted();
-    }
+    public void OnSwitchUnit() => currentAction.ActionGotInterrupted();
 
-    public BaseAction GetCurrentAction()
-    {
-        return currentAction;
-    }
+    public BaseAction GetCurrentAction() => currentAction;
 
-    public bool CurrentActionIsNull()
-    {
-        return currentAction == null;
-    }
+    public bool CurrentActionIsNull() => currentAction == null;
 
-    public bool CurrentACtionIsInterruptible()
-    {
-        return currentAction.IsInterruptible();
-    }
+    public bool CurrentACtionIsInterruptible() => currentAction.IsInterruptible();
 }
