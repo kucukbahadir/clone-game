@@ -8,6 +8,7 @@ public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
     [SerializeField] private bool interruptible;
+    [SerializeField] protected Animator animator;
 
     protected bool _isBusy;
     protected Action _OnActionComplete;
