@@ -1747,6 +1747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionType: 0
   interruptible: 1
+  animator: {fileID: 5488733106066448441}
   speed: 400
   rotateSpeed: 10
 --- !u!1 &5143303877675378848

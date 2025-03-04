@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 8722083609150209537}
   actionDebugText: {fileID: 8992840518530084830}
-  UseDebugUI: 1
+  UseDebugUI: 0
 --- !u!114 &4240215822069298253
 MonoBehaviour:
   m_ObjectHideFlags: 0
