@@ -18,6 +18,7 @@ public class MoveAction : BaseAction
     {
         _OnActionComplete = OnActionComplete;
         _isBusy = true;
+        animator.SetBool("IsWalking", true);
     }
 
     private void Update()
@@ -29,6 +30,7 @@ public class MoveAction : BaseAction
         {
             _isBusy = false;
             _OnActionComplete?.Invoke();
+            animator.SetBool("IsWalking", false);
             return;
         }
     }
@@ -51,6 +53,7 @@ public class MoveAction : BaseAction
     {
         _isBusy = false;
         _moveDirection = Vector2.zero;
+        animator.SetBool("IsWalking", false);
         _OnActionComplete?.Invoke();
     }
 }
