@@ -8,16 +8,15 @@ public class CloneAction : BaseAction
     public override void TakeAction(Action OnActionComplete)
     {
         _OnActionComplete = OnActionComplete;
-        
-         var pos = UnityEngine.Random.insideUnitSphere * 5;
-         Instantiate(unitClonePrefab, new Vector3(pos.x,0,pos.z), Quaternion.identity);
 
-        StartCoroutine(TestCo());
+        StartCoroutine(CloneTime());
     }
 
-    IEnumerator TestCo()
+    IEnumerator CloneTime()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        var pos = UnityEngine.Random.insideUnitSphere * 5;
+        Instantiate(unitClonePrefab, new Vector3(pos.x,0,pos.z), Quaternion.identity);
         _OnActionComplete?.Invoke();
     }
 }

@@ -11,7 +11,7 @@ public class ActionDebugUI : MonoBehaviour
         var action = baseUnit.GetCurrentAction();
         if(action == null)
         {
-            actionDebugText.text = "";
+            actionDebugText.text = "No action";
             return;
         }
         actionDebugText.text = action.ToString();

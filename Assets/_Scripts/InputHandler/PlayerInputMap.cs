@@ -108,6 +108,15 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchUnit"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1c0c0d4-8728-4823-b920-1c16f7544d57"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,17 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Clone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e0a0d63-4747-4da7-b238-39e42f4e1d1e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchUnit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +206,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Clone = m_Gameplay.FindAction("Clone", throwIfNotFound: true);
+        m_Gameplay_SwitchUnit = m_Gameplay.FindAction("SwitchUnit", throwIfNotFound: true);
     }
 
     ~@PlayerInputMap()
@@ -268,6 +289,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Clone;
+    private readonly InputAction m_Gameplay_SwitchUnit;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -287,6 +309,10 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Clone".
         /// </summary>
         public InputAction @Clone => m_Wrapper.m_Gameplay_Clone;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/SwitchUnit".
+        /// </summary>
+        public InputAction @SwitchUnit => m_Wrapper.m_Gameplay_SwitchUnit;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -319,6 +345,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Clone.started += instance.OnClone;
             @Clone.performed += instance.OnClone;
             @Clone.canceled += instance.OnClone;
+            @SwitchUnit.started += instance.OnSwitchUnit;
+            @SwitchUnit.performed += instance.OnSwitchUnit;
+            @SwitchUnit.canceled += instance.OnSwitchUnit;
         }
 
         /// <summary>
@@ -336,6 +365,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Clone.started -= instance.OnClone;
             @Clone.performed -= instance.OnClone;
             @Clone.canceled -= instance.OnClone;
+            @SwitchUnit.started -= instance.OnSwitchUnit;
+            @SwitchUnit.performed -= instance.OnSwitchUnit;
+            @SwitchUnit.canceled -= instance.OnSwitchUnit;
         }
 
         /// <summary>
@@ -390,5 +422,12 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClone(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwitchUnit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchUnit(InputAction.CallbackContext context);
     }
 }
