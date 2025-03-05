@@ -6,16 +6,18 @@ public class TransformationDataHolder : ScriptableObject
 {
     [SerializeField] private List<TransformationData> transformations = new List<TransformationData>();
 
-    private int countOfTransformations;
-
-    void OnValidate()
+    public TransformationData GetTransformationData(TransformationType transformationType)
     {
-        if (countOfTransformations == transformations.Count) return;
-        countOfTransformations = transformations.Count;
-        for (var i = 0; i < transformations.Count; i++)
+        var transformationData = transformations[0];
+
+        foreach (var Data in transformations)
         {
-            var transformData = transformations[i];
-            transformData.ChangeTransformID(i);
+            if (Data.GetTransformType() != transformationType) continue;
+            transformationData = Data;
+            break;
         }
+
+        return transformationData;
     }
+    
 }

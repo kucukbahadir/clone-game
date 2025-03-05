@@ -1,17 +1,13 @@
 using System;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "TransformationData", menuName = "Scriptable Objects/TransformationData")]
 [Serializable]
-public class TransformationData
+public class TransformationData : ScriptableObject
 {
-    [SerializeField, ReadOnly] private int transformID;
+    [SerializeField] private TransformationType transformType;
     [SerializeField] private GameObject transformMesh;
 
-    public void ChangeTransformID(int newTransformID)
-    {
-        transformID = newTransformID;
-    }
-
-    public int GetTransformID() => transformID;
-    public GameObject GetTransformMesh => transformMesh;
+    public TransformationType GetTransformType() => transformType;
+    public GameObject GetTransformMesh() => transformMesh;
 }
