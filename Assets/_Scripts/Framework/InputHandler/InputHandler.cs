@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
         HandleMovementInput();
         HandleCloneInput();
         HandleSwitchUnitInput();
+        HandleTransformInput();
     }
 
     private void HandleMovementInput()
@@ -38,12 +39,20 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
         OnAnyActionInput?.Invoke(this, new ActionEventArgs(ActionTypes.Clone));
     }
 
+    private void HandleTransformInput()
+    {
+        if (!_playerInputMap.Gameplay.Transform.WasPressedThisFrame()) return;
+
+        OnAnyActionInput?.Invoke(this,new ActionEventArgs(ActionTypes.Transform));
+    }
+    
     private void HandleSwitchUnitInput()
     {
         if (!_playerInputMap.Gameplay.SwitchUnit.WasPressedThisFrame()) return;
 
         OnSwitchUnitInput?.Invoke(this,null);
     }
+    
 
     public Vector2 GetMoveValue() => _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
 

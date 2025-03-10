@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be240a884d25124081b6b4f4c2d5345, type: 3}
   m_Name: TransformationDataHolder
   m_EditorClassIdentifier: 
-  transformations: []
+  transformations:
+  - {fileID: 11400000, guid: edb31c1bf5c72e74cbba15c0eda7d7e1, type: 2}

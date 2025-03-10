@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 850289931318628454}
   actionDebugText: {fileID: 6443081294057523693}
-  UseDebugUI: 0
+  UseDebugUI: 1
 --- !u!114 &7790533833653550039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,6 +1647,7 @@ GameObject:
   - component: {fileID: 9088626980864506582}
   - component: {fileID: 850289931318628454}
   - component: {fileID: 6616550379286950331}
+  - component: {fileID: 2281883547275577102}
   m_Layer: 0
   m_Name: UnitClone
   m_TagString: Untagged
@@ -1750,6 +1751,21 @@ MonoBehaviour:
   animator: {fileID: 5488733106066448441}
   speed: 400
   rotateSpeed: 10
+--- !u!114 &2281883547275577102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185516122245272929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec1c0efb2449fe4699ebf3d21e44ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 2
+  interruptible: 0
+  animator: {fileID: 0}
 --- !u!1 &5143303877675378848
 GameObject:
   m_ObjectHideFlags: 0
