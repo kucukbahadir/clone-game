@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class TransformationAction : BaseAction
+public class TransformAction : BaseAction
 {
     public override void TakeAction(Action OnActionComplete)
     {
