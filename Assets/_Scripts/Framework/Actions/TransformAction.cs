@@ -12,7 +12,7 @@ public class TransformAction : BaseAction
 
     IEnumerator TransformTime()
     {
-        print("Transform");
+        TransformUI.Instance.OpenTransformUI();
         yield return new WaitForSeconds(2f);
         _OnActionComplete?.Invoke();
     }

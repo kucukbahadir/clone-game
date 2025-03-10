@@ -5,4 +5,6 @@ using UnityEngine;
 public class TransformationDataHolder : ScriptableObject
 {
     [SerializeField] private List<TransformationData> transformations = new List<TransformationData>();    
+
+    public List<TransformationData> GetTransformations() => transformations;
 }
