@@ -17,7 +17,7 @@ public class TransformAction : BaseAction
 
     private void HandleNewTransformation(TransformationData transformationData)
     {
-        if(transformationData == null)
+        if(transformationData == null || transformationData.GetTransformationMesh == null)
         {
             Destroy(_currentTransformation);
             defaultCloneGraphics.SetActive(true);
