@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviourSingleton<InputHandler>
 {
-    public EventHandler<ActionEventArgs> OnAnyActionInput;
+    public EventHandler<ActionTypes> OnAnyActionInput;
     public EventHandler OnSwitchUnitInput;
     private PlayerInputMap _playerInputMap;
 
@@ -29,21 +29,21 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
     private void HandleMovementInput()
     {
         if(_playerInputMap.Gameplay.Move.ReadValue<Vector2>() == Vector2.zero) return;
-        OnAnyActionInput?.Invoke(this, new ActionEventArgs(ActionTypes.Move));
+        OnAnyActionInput?.Invoke(this, ActionTypes.Move);
     }
 
     private void HandleCloneInput()
     {
         if (!_playerInputMap.Gameplay.Clone.WasPressedThisFrame()) return;
 
-        OnAnyActionInput?.Invoke(this, new ActionEventArgs(ActionTypes.Clone));
+        OnAnyActionInput?.Invoke(this, ActionTypes.Clone);
     }
 
     private void HandleTransformInput()
     {
         if (!_playerInputMap.Gameplay.Transform.WasPressedThisFrame()) return;
 
-        OnAnyActionInput?.Invoke(this,new ActionEventArgs(ActionTypes.Transform));
+        OnAnyActionInput?.Invoke(this,ActionTypes.Transform);
     }
     
     private void HandleSwitchUnitInput()
