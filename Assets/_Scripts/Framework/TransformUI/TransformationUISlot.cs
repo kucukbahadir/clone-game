@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TransformUISlot : MonoBehaviour
+public class TransformationUISlot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI slotText;
 
