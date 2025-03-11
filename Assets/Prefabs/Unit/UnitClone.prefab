@@ -1766,6 +1766,7 @@ MonoBehaviour:
   actionType: 2
   interruptible: 0
   animator: {fileID: 0}
+  defaultCloneGraphics: {fileID: 1261036302339006713}
 --- !u!1 &5143303877675378848
 GameObject:
   m_ObjectHideFlags: 0

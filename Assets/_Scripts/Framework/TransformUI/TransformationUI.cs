@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class TransformationUI : MonoBehaviour
 {
-    [SerializeField] private GameObject Panel;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject holder;
     [SerializeField] private TransformationUISlot transformationUISlot;
 
     public EventHandler<string> OnNewTransformationSelected;
 
     private void Awake()
     {
-        Panel.SetActive(false);
+        holder.SetActive(false);
     }
 
     private void Start()
@@ -27,13 +28,13 @@ public class TransformationUI : MonoBehaviour
         {
             var newTransformationUISlot = Instantiate(transformationUISlot);
             newTransformationUISlot.UpdateSlotText(name);
-            newTransformationUISlot.transform.SetParent(Panel.transform);
+            newTransformationUISlot.transform.SetParent(panel.transform);
         }
     }
 
     public void OpenTransformUI()
     {
-        Panel.SetActive(true);
+        holder.SetActive(true);
     }
 
     private void OnTransformationSelected(object sender ,string transformationName)
@@ -42,8 +43,14 @@ public class TransformationUI : MonoBehaviour
         CloseTransformUI();
     }
 
+    public void OnDefaultTransformationSelected()
+    {
+        OnNewTransformationSelected?.Invoke(this,null);
+        CloseTransformUI();
+    }
+
     private void CloseTransformUI()
     {
-        Panel.SetActive(false);
+        holder.SetActive(false);
     }
 }

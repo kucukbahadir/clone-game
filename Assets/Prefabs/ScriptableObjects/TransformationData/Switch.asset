@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b6f89d0d384a74c82a2b2f1c198157, type: 3}
   m_Name: Switch
   m_EditorClassIdentifier: 
-  transformName: Switch
-  transformMesh: {fileID: 0}
-  transformType: 0
+  transformationName: Switch
+  transformationMesh: {fileID: 0}

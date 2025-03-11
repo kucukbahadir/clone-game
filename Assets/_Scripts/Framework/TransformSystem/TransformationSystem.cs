@@ -39,6 +39,12 @@ public class TransformationSystem : MonoBehaviour
 
     private void OnNewTransformationSelected(object sender, string transformationName)
     {
+        if (transformationName == null)
+        {
+            _callBackAction?.Invoke(null);
+            return;
+        }
+
         foreach (var transformationData in transformationDataHolder.GetTransformations())
         {
             if (transformationData.GetTransformationName != transformationName) continue;
