@@ -19,7 +19,7 @@ public class TransformationSystem : MonoBehaviour
 
         foreach (var transformation in transformationDataHolder.GetTransformations())
         {
-            transformationNames.Add(transformation.GetTransformName());
+            transformationNames.Add(transformation.GetTransformationName);
         }
     }
 
@@ -41,7 +41,7 @@ public class TransformationSystem : MonoBehaviour
     {
         foreach (var transformationData in transformationDataHolder.GetTransformations())
         {
-            if (transformationData.GetTransformName() != transformationName) continue;
+            if (transformationData.GetTransformationName != transformationName) continue;
             
             _callBackAction?.Invoke(transformationData);
         }

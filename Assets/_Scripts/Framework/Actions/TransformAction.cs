@@ -12,7 +12,7 @@ public class TransformAction : BaseAction
 
     private void HandleNewTransformation(TransformationData transformationData)
     {
-        print(transformationData.GetTransformName());
+        print(transformationData.GetTransformationName);
         _OnActionComplete?.Invoke();
     }
 }

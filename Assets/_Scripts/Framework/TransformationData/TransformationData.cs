@@ -5,11 +5,9 @@ using UnityEngine;
 [Serializable]
 public class TransformationData : ScriptableObject
 {
-    [SerializeField] private string transformName;
-    [SerializeField] private GameObject transformMesh;
-    [SerializeField] private TransformationType transformType;
+    [SerializeField] private string transformationName;
+    [SerializeField] private GameObject transformationMesh;
 
-    public TransformationType GetTransformType() => transformType;
-    public GameObject GetTransformMesh() => transformMesh;
-    public string GetTransformName() => transformName;
+    public GameObject GetTransformationMesh => transformationMesh;
+    public string GetTransformationName => transformationName;
 }
