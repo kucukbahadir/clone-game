@@ -1,19 +1,27 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEditor.UI;
 
 public class TransformAction : BaseAction
 {
+    public static EventHandler<Action<TransformationData>> OnTransformationAction;
+
     public override void TakeAction(Action OnActionComplete)
     {
         _OnActionComplete = OnActionComplete;
+        OnTransformationAction?.Invoke(this, HandleNewTransformation);
         StartCoroutine(TransformTime());
     }
 
     IEnumerator TransformTime()
     {
-        TransformUI.Instance.OpenTransformUI();
         yield return new WaitForSeconds(2f);
         _OnActionComplete?.Invoke();
+    }
+
+    private void HandleNewTransformation(TransformationData transformationData)
+    {
+        print(transformationData.GetTransformName());
     }
 }
