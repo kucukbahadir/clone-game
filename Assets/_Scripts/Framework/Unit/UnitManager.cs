@@ -17,9 +17,9 @@ public class UnitManager : MonoBehaviour
         UnitClone.OnUnitCloneSpawn += OnUnitCloneSpawn;
     }
 
-    private void OnInput(object sender, ActionEventArgs actionEventArgs)
+    private void OnInput(object sender, ActionTypes actionType)
     {
-        currentUnit.TryDoingAction(actionEventArgs);
+        currentUnit.TryDoingAction(actionType);
     }
 
     private void OnUnitCloneSpawn(object sender, EventArgs args)

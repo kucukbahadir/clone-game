@@ -3,7 +3,6 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;

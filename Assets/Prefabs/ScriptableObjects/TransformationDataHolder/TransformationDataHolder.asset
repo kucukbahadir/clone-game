@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be240a884d25124081b6b4f4c2d5345, type: 3}
+  m_Name: TransformationDataHolder
+  m_EditorClassIdentifier: 
+  transformations:
+  - {fileID: 11400000, guid: edb31c1bf5c72e74cbba15c0eda7d7e1, type: 2}
+  - {fileID: 11400000, guid: 4d03c39d348d22543b260d419c80e77b, type: 2}
+  - {fileID: 11400000, guid: 125f2f1abc6c90a4487b2d86d16e6f72, type: 2}

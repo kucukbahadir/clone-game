@@ -11,13 +11,13 @@ public class BaseUnit : MonoBehaviour
         _unitActions = GetComponents<BaseAction>();
     }
 
-    public void TryDoingAction(ActionEventArgs actionEventArgs)
+    public void TryDoingAction(ActionTypes actionType)
     {
         if (!CurrentActionIsNull() && !CurrentActionIsInterruptible()) return;
 
         foreach (var action in _unitActions)
         {
-            if(action.GetActionType() != actionEventArgs.ActionType || currentAction == action) continue;
+            if(action.GetActionType() != actionType || currentAction == action) continue;
 
             if(!CurrentActionIsNull()) currentAction.ActionGotInterrupted();
  
