@@ -24,6 +24,7 @@ public class TransformationSystem : MonoBehaviourSingleton<TransformationSystem>
     private void Start()
     {
         TransformAction.OnTransformationAction += OnTransformationActionUsed;
+        transformationUI.OnNewTransformationSelected += OnNewTransformationSelected;
     }
 
     private void OnTransformationActionUsed(object sender,Action<TransformationData> callBackAction)
@@ -31,5 +32,15 @@ public class TransformationSystem : MonoBehaviourSingleton<TransformationSystem>
         _callBackAction = callBackAction;
 
         transformationUI.OpenTransformUI(transformationNames);
+    }
+
+    private void OnNewTransformationSelected(object sender, string transformationName)
+    {
+        foreach (var transformationData in transformationDataHolder.GetTransformations())
+        {
+            if (transformationData.GetTransformName() != transformationName) continue;
+            
+            _callBackAction?.Invoke(transformationData);
+        }
     }
 }

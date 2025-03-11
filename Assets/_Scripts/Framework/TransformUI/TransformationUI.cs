@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,9 +9,16 @@ public class TransformationUI : MonoBehaviour
     [SerializeField] private GameObject Panel;
     [SerializeField] private TransformationUISlot transformationUISlot;
 
-    protected void Awake()
+    public EventHandler<string> OnNewTransformationSelected;
+
+    private void Awake()
     {
         Panel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        TransformationUISlot.OnTransformationSelected += OnTransformationSelected;
     }
 
     public void OpenTransformUI(List<string> transformationNames)
@@ -18,10 +26,21 @@ public class TransformationUI : MonoBehaviour
         foreach (var name in transformationNames)
         {
             var newTransformationUISlot = Instantiate(transformationUISlot);
-            newTransformationUISlot.GetSlotText().text = name;
+            newTransformationUISlot.UpdateSlotText(name);
             newTransformationUISlot.transform.SetParent(Panel.transform);
         }
-        
+
         Panel.SetActive(true);
+    }
+
+    private void OnTransformationSelected(object sender ,string transformationName)
+    {
+        OnNewTransformationSelected?.Invoke(this,transformationName);
+        CloseTransformUI();
+    }
+
+    private void CloseTransformUI()
+    {
+        Panel.SetActive(false);
     }
 }

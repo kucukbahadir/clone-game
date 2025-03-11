@@ -11,17 +11,11 @@ public class TransformAction : BaseAction
     {
         _OnActionComplete = OnActionComplete;
         OnTransformationAction?.Invoke(this, HandleNewTransformation);
-        StartCoroutine(TransformTime());
-    }
-
-    IEnumerator TransformTime()
-    {
-        yield return new WaitForSeconds(2f);
-        _OnActionComplete?.Invoke();
     }
 
     private void HandleNewTransformation(TransformationData transformationData)
     {
         print(transformationData.GetTransformName());
+        _OnActionComplete?.Invoke();
     }
 }
