@@ -147,6 +147,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformationDataHolder: {fileID: 11400000, guid: c572c8eb98991554c94a0f7cc3dcdff1, type: 2}
   transformationUI: {fileID: 4163472361089556474}
+  OnTransformationActionActive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4163472361089556474}
+        m_TargetAssemblyTypeName: TransformationUI, Assembly-CSharp
+        m_MethodName: OpenTransformUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7087113860790981290
 GameObject:
   m_ObjectHideFlags: 0

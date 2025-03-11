@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class TransformationSystem : MonoBehaviourSingleton<TransformationSystem>
+public class TransformationSystem : MonoBehaviour
 {
     [SerializeField] private TransformationDataHolder transformationDataHolder;
     [SerializeField] private TransformationUI transformationUI;
 
+    public UnityEvent OnTransformationActionActive;
+
     private Action<TransformationData> _callBackAction;
     private List<string> transformationNames;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         transformationNames = new List<string>();
 
         foreach (var transformation in transformationDataHolder.GetTransformations())
@@ -25,13 +27,14 @@ public class TransformationSystem : MonoBehaviourSingleton<TransformationSystem>
     {
         TransformAction.OnTransformationAction += OnTransformationActionUsed;
         transformationUI.OnNewTransformationSelected += OnNewTransformationSelected;
+
+        transformationUI.SetUpTransformUI(transformationNames);
     }
 
     private void OnTransformationActionUsed(object sender,Action<TransformationData> callBackAction)
     {
         _callBackAction = callBackAction;
-
-        transformationUI.OpenTransformUI(transformationNames);
+        OnTransformationActionActive?.Invoke();
     }
 
     private void OnNewTransformationSelected(object sender, string transformationName)

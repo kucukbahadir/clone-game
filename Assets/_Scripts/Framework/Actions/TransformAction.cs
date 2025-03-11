@@ -1,7 +1,4 @@
 using System;
-using UnityEngine;
-using System.Collections;
-using UnityEditor.UI;
 
 public class TransformAction : BaseAction
 {

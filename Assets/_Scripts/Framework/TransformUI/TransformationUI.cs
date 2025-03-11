@@ -19,9 +19,9 @@ public class TransformationUI : MonoBehaviour
     private void Start()
     {
         TransformationUISlot.OnTransformationSelected += OnTransformationSelected;
-    }
+    }  
 
-    public void OpenTransformUI(List<string> transformationNames)
+    public void SetUpTransformUI(List<string> transformationNames)
     {
         foreach (var name in transformationNames)
         {
@@ -29,7 +29,10 @@ public class TransformationUI : MonoBehaviour
             newTransformationUISlot.UpdateSlotText(name);
             newTransformationUISlot.transform.SetParent(Panel.transform);
         }
+    }
 
+    public void OpenTransformUI()
+    {
         Panel.SetActive(true);
     }
 
