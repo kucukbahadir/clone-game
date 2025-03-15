@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class TransformationChecker : MonoBehaviour
+public class TransformationChecker : MonoBehaviour, IInteractable
 {
     [SerializeField] private string requiredTransformation;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnInteract(string transformationName)
     {
-        if(!other.TryGetComponent<UnitClone>(out var unitClone)) return;
-
-        var unitCloneTransformation = unitClone.GetCurrentTransformation;
-
-        if(unitCloneTransformation == null || unitCloneTransformation != requiredTransformation) return;
+        if(transformationName == null || transformationName != requiredTransformation) return;
 
         print("good transformation");
     }

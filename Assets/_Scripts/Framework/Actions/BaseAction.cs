@@ -8,10 +8,12 @@ public abstract class BaseAction : MonoBehaviour
     [SerializeField] private ActionTypes actionType;
     [SerializeField] private bool interruptible;
     protected Animator _animator;
+    protected BaseUnit _unitReference;
 
     protected virtual void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+        _unitReference = GetComponent<BaseUnit>();
     }
 
     protected bool _isBusy;
