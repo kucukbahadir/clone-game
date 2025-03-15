@@ -4,6 +4,7 @@ using UnityEngine;
 public class TransformAction : BaseAction
 {
     public static EventHandler<Action<TransformationData>> OnTransformationAction;
+    public static EventHandler<string> OnNewTransformation;
     
     [SerializeField] private GameObject defaultCloneGraphics;
 
@@ -21,6 +22,7 @@ public class TransformAction : BaseAction
         {
             Destroy(_currentTransformation);
             defaultCloneGraphics.SetActive(true);
+            OnNewTransformation?.Invoke(this, null);
             _OnActionComplete?.Invoke();
             return;
         }
@@ -30,6 +32,7 @@ public class TransformAction : BaseAction
         _currentTransformation = Instantiate(transformationData.GetTransformationMesh);
         _currentTransformation.transform.SetParent(transform);
         _currentTransformation.transform.position = transform.position;
+        OnNewTransformation?.Invoke(this, transformationData.GetTransformationName);
 
         _OnActionComplete?.Invoke();
     }
