@@ -9,8 +9,9 @@ public class MoveAction : BaseAction
     private Rigidbody _rigidBody;
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _rigidBody = GetComponent<Rigidbody>();
     }
 
@@ -18,7 +19,7 @@ public class MoveAction : BaseAction
     {
         _OnActionComplete = OnActionComplete;
         _isBusy = true;
-        animator.SetBool("IsWalking", true);
+        _animator.SetBool("IsWalking", true);
     }
 
     private void Update()
@@ -30,7 +31,7 @@ public class MoveAction : BaseAction
         {
             _isBusy = false;
             _OnActionComplete?.Invoke();
-            animator.SetBool("IsWalking", false);
+            _animator.SetBool("IsWalking", false);
             return;
         }
     }
@@ -53,7 +54,7 @@ public class MoveAction : BaseAction
     {
         _isBusy = false;
         _moveDirection = Vector2.zero;
-        animator.SetBool("IsWalking", false);
+        _animator.SetBool("IsWalking", false);
         _OnActionComplete?.Invoke();
     }
 }
