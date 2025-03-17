@@ -8,20 +8,34 @@ public class InteractableChecker : MonoBehaviour
 
     private Interactable _closestInteractable;
 
+    private bool _updateChecker = true;
+
     private void Start()
     {
-        InputHandler.Instance.OnSwitchUnitInput += DisableAllInteractableUI;
+        InputHandler.Instance.OnSwitchUnitInput += OnSwitchUnit;
         UnitClone.OnUnitCloneSpawn += DisableAllInteractableUI;
+    }
+
+    private void OnSwitchUnit(object sender, EventArgs e)
+    {
+        var currentUnit = UnitManager.Instance.GetCurrentUnit;
+        var thisUnit = GetComponentInParent<BaseUnit>().GetUnitReference;
+        DisableAllInteractableUI(sender, e);
+
+        if(currentUnit == thisUnit)
+        {
+            _updateChecker = true;
+            _closestInteractable?.OnInRange();
+        }
     }
 
     private void DisableAllInteractableUI(object sender, EventArgs e)
     {
+        _updateChecker = false;
         foreach (var interactable in _currentInteractablesInRange)
         {
             interactable.OnOutOfRange();
         }
-
-        _closestInteractable = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +61,7 @@ public class InteractableChecker : MonoBehaviour
 
     private void Update()
     {
-        if(_closestInteractable == null) return;
+        if(!_updateChecker) return;
         foreach (var interactable in _currentInteractablesInRange)
         {
             var newDistance = Vector3.Distance(transform.position, interactable.transform.position);

@@ -5,10 +5,12 @@ public class BaseUnit : MonoBehaviour
 {
     protected BaseAction[] _unitActions;
     protected BaseAction currentAction;
+    protected BaseUnit _unitReference;
 
     protected virtual void Awake()
     {
         _unitActions = GetComponents<BaseAction>();
+        _unitReference = this;
     }
 
     public void TryDoingAction(ActionTypes actionType)
@@ -38,4 +40,6 @@ public class BaseUnit : MonoBehaviour
     public bool CurrentActionIsNull() => currentAction == null;
 
     public bool CurrentActionIsInterruptible() => currentAction.IsInterruptible();
+
+    public BaseUnit GetUnitReference => _unitReference;
 }
