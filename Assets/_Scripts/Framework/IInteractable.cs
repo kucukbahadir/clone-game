@@ -1,4 +1,4 @@
 public interface IInteractable
 {
-    public abstract void OnInteract(string transformationName);
+    public abstract void OnInteract<T>(T interactArg);
 }

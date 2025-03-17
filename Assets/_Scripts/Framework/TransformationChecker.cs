@@ -4,9 +4,10 @@ public class TransformationChecker : MonoBehaviour, IInteractable
 {
     [SerializeField] private string requiredTransformation;
 
-    public void OnInteract(string transformationName)
+    public void OnInteract<T>(T transformationName)
     {
-        if(transformationName == null || transformationName != requiredTransformation) return;
+        print(transformationName);
+        if(transformationName == null || transformationName.ToString() != requiredTransformation) return;
 
         print("good transformation");
     }

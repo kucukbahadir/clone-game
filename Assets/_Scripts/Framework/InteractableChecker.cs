@@ -8,7 +8,7 @@ public class InteractableChecker : MonoBehaviour
     {
         if (!other.TryGetComponent<IInteractable>(out var interactable)) return;
 
-        print("test");
+        print("Interaction in sight");
         _currentInteractableInRange = interactable;
     }
 
