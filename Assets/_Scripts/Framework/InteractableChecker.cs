@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,22 @@ public class InteractableChecker : MonoBehaviour
     private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
 
     private Interactable _closestInteractable;
+
+    private void Start()
+    {
+        InputHandler.Instance.OnSwitchUnitInput += DisableAllInteractableUI;
+        UnitClone.OnUnitCloneSpawn += DisableAllInteractableUI;
+    }
+
+    private void DisableAllInteractableUI(object sender, EventArgs e)
+    {
+        foreach (var interactable in _currentInteractablesInRange)
+        {
+            interactable.OnOutOfRange();
+        }
+
+        _closestInteractable = null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +47,7 @@ public class InteractableChecker : MonoBehaviour
 
     private void Update()
     {
+        if(_closestInteractable == null) return;
         foreach (var interactable in _currentInteractablesInRange)
         {
             var newDistance = Vector3.Distance(transform.position, interactable.transform.position);
@@ -42,5 +60,5 @@ public class InteractableChecker : MonoBehaviour
         }
     }
 
-    public Interactable GetCurrentInteractable => _currentInteractablesInRange[0];
+    public Interactable GetClosestInteractable => _closestInteractable;
 }

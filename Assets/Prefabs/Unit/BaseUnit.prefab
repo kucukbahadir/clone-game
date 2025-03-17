@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 8722083609150209537}
   - component: {fileID: 3713500163998010751}
   - component: {fileID: 1980316240587162160}
-  - component: {fileID: 987827503890016916}
+  - component: {fileID: 8498959944997092560}
   m_Layer: 0
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -307,7 +307,7 @@ Transform:
   m_Children:
   - {fileID: 8519075611330270289}
   - {fileID: 6460988300809230768}
-  - {fileID: 116542354334975185}
+  - {fileID: 65250609902431190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6333265113766231800
@@ -403,7 +403,7 @@ MonoBehaviour:
   actionType: 1
   interruptible: 0
   unitClonePrefab: {fileID: 4185516122245272929, guid: f0109d9aa6f113e4889819ca82a42014, type: 3}
---- !u!114 &987827503890016916
+--- !u!114 &8498959944997092560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionType: 3
   interruptible: 0
-  interactableChecker: {fileID: 1243211102832771274}
+  interactableChecker: {fileID: 1168998957068283853}
 --- !u!1 &1960995513969784255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2077,7 @@ Transform:
   - {fileID: 4321057556833118524}
   m_Father: {fileID: 7908633732947823300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3052630136295942045
+--- !u!1001 &3108826648823351450
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2085,14 +2085,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 666532269719863891}
     m_Modifications:
-    - target: {fileID: 1074977111873123310, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
-      propertyPath: m_Size.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1074977111873123310, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
-      propertyPath: m_Size.z
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3153386464230695756, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2142,15 +2134,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
---- !u!4 &116542354334975185 stripped
+--- !u!4 &65250609902431190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3153386464230695756, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
-  m_PrefabInstance: {fileID: 3052630136295942045}
+  m_PrefabInstance: {fileID: 3108826648823351450}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1243211102832771274 stripped
+--- !u!114 &1168998957068283853 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4259801642414188375, guid: 7c9bf1046144d434687fb8e4f9cf52df, type: 3}
-  m_PrefabInstance: {fileID: 3052630136295942045}
+  m_PrefabInstance: {fileID: 3108826648823351450}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

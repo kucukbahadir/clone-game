@@ -5,7 +5,7 @@ public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] private InteractUI interactableUI;
 
-    public abstract void OnInteract<T>(T interactArg);
+    public abstract void OnInteract(object sender);
 
     public void OnInRange()
     {

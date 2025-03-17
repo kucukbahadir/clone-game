@@ -8,8 +8,7 @@ public class InteractAction : BaseAction
     public override void TakeAction(Action OnActionComplete)
     {
         _OnActionComplete = OnActionComplete;
-        var unitCloneCast = (UnitClone)_unitReference;
-        interactableChecker.GetCurrentInteractable.OnInteract(unitCloneCast.GetCurrentTransformation);
+        interactableChecker.GetClosestInteractable.OnInteract(_unitReference);
         _OnActionComplete?.Invoke();
     }
 }

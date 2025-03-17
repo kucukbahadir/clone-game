@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 850289931318628454}
   actionDebugText: {fileID: 6443081294057523693}
-  UseDebugUI: 1
+  UseDebugUI: 0
 --- !u!114 &7790533833653550039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82df13a502ba1a0438b58e19e77b52e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invert: 0
 --- !u!1 &3215762475963833832
 GameObject:
   m_ObjectHideFlags: 0

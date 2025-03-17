@@ -4,10 +4,11 @@ public class TransformationChecker : Interactable
 {
     [SerializeField] private string requiredTransformation;
 
-    public override void OnInteract<T>(T transformationName)
+    public override void OnInteract(object sender)
     {
-        print(transformationName);
-        if(transformationName == null || transformationName.ToString() != requiredTransformation) return;
+        if (sender is BaseUnit) return;
+        var unitClone = (UnitClone)sender;
+        if(unitClone.GetCurrentTransformation == null || unitClone.GetCurrentTransformation != requiredTransformation) return;
 
         print("good transformation");
     }
