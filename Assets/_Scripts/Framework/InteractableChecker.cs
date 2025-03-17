@@ -1,16 +1,46 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableChecker : MonoBehaviour
 {
-    [SerializeField]private IInteractable _currentInteractableInRange;
+    private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
+
+    private Interactable _closestInteractable;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent<IInteractable>(out var interactable)) return;
+        if (!other.TryGetComponent<Interactable>(out var interactable)) return;
 
-        print("Interaction in sight");
-        _currentInteractableInRange = interactable;
+        _currentInteractablesInRange.Add(interactable);
+
+        if(_currentInteractablesInRange.Count > 1) return;
+
+        _closestInteractable = interactable;
+        _closestInteractable.OnInRange();
     }
 
-    public IInteractable GetCurrentInteractable => _currentInteractableInRange;
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.TryGetComponent<Interactable>(out var interactable)) return;
+
+        _currentInteractablesInRange.Remove(interactable);
+
+        interactable.OnOutOfRange();
+    }
+
+    private void Update()
+    {
+        foreach (var interactable in _currentInteractablesInRange)
+        {
+            var newDistance = Vector3.Distance(transform.position, interactable.transform.position);
+
+            if(newDistance >= Vector3.Distance(transform.position, _closestInteractable.transform.position)) continue;
+
+            _closestInteractable.OnOutOfRange();
+            _closestInteractable = interactable;
+            _closestInteractable.OnInRange();
+        }
+    }
+
+    public Interactable GetCurrentInteractable => _currentInteractablesInRange[0];
 }
