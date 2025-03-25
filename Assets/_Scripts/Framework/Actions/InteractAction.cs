@@ -8,6 +8,11 @@ public class InteractAction : BaseAction
     public override void TakeAction(Action OnActionComplete)
     {
         _OnActionComplete = OnActionComplete;
+        if(interactableChecker.GetClosestInteractable == null)
+        {
+            _OnActionComplete?.Invoke();
+            return;
+        }
         interactableChecker.GetClosestInteractable.OnInteract(_unitReference);
         _OnActionComplete?.Invoke();
     }
