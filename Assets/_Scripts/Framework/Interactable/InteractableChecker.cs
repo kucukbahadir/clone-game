@@ -12,7 +12,7 @@ public class InteractableChecker : MonoBehaviour
 
     private void Start()
     {
-        InputHandler.Instance.OnSwitchUnitInput += OnSwitchUnit;
+        UnitManager.Instance.OnSwitchToNewUnit += OnSwitchUnit;
         UnitClone.OnUnitCloneSpawn += DisableAllInteractableUI;
     }
 
