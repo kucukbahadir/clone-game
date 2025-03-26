@@ -34,6 +34,8 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
         var cloneUnit = (BaseUnit)sender;
         units.Add(cloneUnit);
         currentUnit = cloneUnit;
+
+        OnSwitchToNewUnit?.Invoke(this, null);
     }
 
     private void OnSwitchUnitInput(object sender, EventArgs args)

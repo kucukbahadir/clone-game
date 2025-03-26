@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
@@ -42,4 +43,6 @@ public class BaseUnit : MonoBehaviour
     public bool CurrentActionIsInterruptible() => currentAction.IsInterruptible();
 
     public BaseUnit GetUnitReference => _unitReference;
+
+    public BaseAction[] GetAllActions => _unitActions;
 }

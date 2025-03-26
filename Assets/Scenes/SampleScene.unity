@@ -806,10 +806,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransformationSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 5171363281263048238, guid: 4dc807b63a7345048aaf87d9f071e430, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6164420087006929088, guid: 4dc807b63a7345048aaf87d9f071e430, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
