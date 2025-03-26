@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableChecker : MonoBehaviour
 {
-    private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
+    [SerializeField] private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
 
     private Interactable _closestInteractable;
 
@@ -13,29 +13,33 @@ public class InteractableChecker : MonoBehaviour
     private void Start()
     {
         UnitManager.Instance.OnSwitchToNewUnit += OnSwitchUnit;
-        UnitClone.OnUnitCloneSpawn += DisableAllInteractableUI;
     }
 
     private void OnSwitchUnit(object sender, EventArgs e)
     {
         var currentUnit = UnitManager.Instance.GetCurrentUnit;
         var thisUnit = GetComponentInParent<BaseUnit>().GetUnitReference;
-        DisableAllInteractableUI(sender, e);
+        DisableAllInteractableUI();
 
         if(currentUnit == thisUnit)
         {
             _updateChecker = true;
-            _closestInteractable?.OnInRange();
+            
+            if(_currentInteractablesInRange.Count <= 0) return;
+            _closestInteractable = _currentInteractablesInRange[0];
+            _closestInteractable.InRange();
         }
     }
 
-    private void DisableAllInteractableUI(object sender, EventArgs e)
+    private void DisableAllInteractableUI()
     {
         _updateChecker = false;
         foreach (var interactable in _currentInteractablesInRange)
         {
-            interactable.OnOutOfRange();
+            interactable.OutOfRange();
         }
+
+        _closestInteractable = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +51,7 @@ public class InteractableChecker : MonoBehaviour
         if(_currentInteractablesInRange.Count > 1) return;
 
         _closestInteractable = interactable;
-        _closestInteractable.OnInRange();
+        _closestInteractable.InRange();
     }
 
     void OnTriggerExit(Collider other)
@@ -56,7 +60,7 @@ public class InteractableChecker : MonoBehaviour
 
         _currentInteractablesInRange.Remove(interactable);
 
-        interactable.OnOutOfRange();
+        interactable.OutOfRange();
     }
 
     private void Update()
@@ -68,9 +72,9 @@ public class InteractableChecker : MonoBehaviour
 
             if(newDistance >= Vector3.Distance(transform.position, _closestInteractable.transform.position)) continue;
 
-            _closestInteractable.OnOutOfRange();
+            _closestInteractable.OutOfRange();
             _closestInteractable = interactable;
-            _closestInteractable.OnInRange();
+            _closestInteractable.InRange();
         }
     }
 
