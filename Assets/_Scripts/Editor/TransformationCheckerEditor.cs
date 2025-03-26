@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 
 [CustomEditor(typeof(TransformationChecker))]
 public class TransformationCheckerEditor : Editor
@@ -9,7 +10,7 @@ public class TransformationCheckerEditor : Editor
     private string _transformationDataHolderPath = "Assets/Prefabs/ScriptableObjects/TransformationDataHolder/TransformationDataHolder.asset";
     private List<string> _transformationNames = new List<string>();
 
-    private int transformationIndex = 0;
+    private int transformationIndex;
 
     private void OnEnable()
     {
@@ -20,6 +21,12 @@ public class TransformationCheckerEditor : Editor
         {
             if (_transformationNames.Contains(transformation.name)) continue;
             _transformationNames.Add(transformation.name);
+        }
+
+        if(_transformationChecker.GetRequiredTransformation == null)
+        {
+            _transformationChecker.SetRequiredTransformation(_transformationNames[0]);
+            transformationIndex = 0;
         }
 
         transformationIndex = GetIndexByTransformationName(_transformationChecker.GetRequiredTransformation);
@@ -35,6 +42,8 @@ public class TransformationCheckerEditor : Editor
         {
             _transformationChecker.SetRequiredTransformation(GetTransformationNameByIndex(transformationIndex));
         }
+
+        EditorUtility.SetDirty(target);
     }
 
     private string GetTransformationNameByIndex(int index)

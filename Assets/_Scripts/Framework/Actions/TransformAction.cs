@@ -22,7 +22,7 @@ public class TransformAction : BaseAction
         {
             Destroy(_currentTransformation);
             defaultCloneGraphics.SetActive(true);
-            OnNewTransformation?.Invoke(this, null);
+            OnNewTransformation?.Invoke(this, transformationData.GetTransformationName);
             _OnActionComplete?.Invoke();
             return;
         }

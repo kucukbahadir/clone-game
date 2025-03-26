@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b6f89d0d384a74c82a2b2f1c198157, type: 3}
   m_Name: Lamp2
   m_EditorClassIdentifier: 
-  transformationName: 
+  transformationName: Lamp2
   transformationMesh: {fileID: 0}
