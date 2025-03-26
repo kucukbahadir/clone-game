@@ -8,6 +8,8 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
 
     private List<BaseUnit> units;
 
+    public EventHandler OnSwitchToNewUnit;
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,10 +34,14 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
         var cloneUnit = (BaseUnit)sender;
         units.Add(cloneUnit);
         currentUnit = cloneUnit;
+
+        OnSwitchToNewUnit?.Invoke(this, null);
     }
 
     private void OnSwitchUnitInput(object sender, EventArgs args)
     {
+        if (units.Count <= 1) return;
+
         var currentUnitIndex = GetCurrentUnitIndex();
         var newCurrentUnit = GetNextUnit(currentUnitIndex);
 
@@ -48,6 +54,8 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
             currentUnit.OnSwitchUnit();
             currentUnit = newCurrentUnit;
         }
+
+        OnSwitchToNewUnit?.Invoke(this, null);
     }
 
     private int GetCurrentUnitIndex()

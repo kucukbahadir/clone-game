@@ -7,12 +7,12 @@ public abstract class Interactable : MonoBehaviour
 
     public abstract void OnInteract(object sender);
 
-    public void OnInRange()
+    public void InRange()
     {
         interactableUI.Show();
     }
 
-    public void OnOutOfRange()
+    public void OutOfRange()
     {
         interactableUI.Hide();
     }

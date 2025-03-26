@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class TransformationChecker : Interactable
 {
-    private string requiredTransformation;
+    [SerializeField, HideInInspector]private string requiredTransformation;
 
     public override void OnInteract(object sender)
     {
         if (sender is not UnitClone) return;
         var unitClone = (UnitClone)sender;
-        print(requiredTransformation);
         if(unitClone.GetCurrentTransformation == null || unitClone.GetCurrentTransformation != requiredTransformation)
         {
             print("wrong transformation the transformation need is: " + requiredTransformation);
@@ -18,6 +17,6 @@ public class TransformationChecker : Interactable
         print("good transformation");
     }
 
-    public void SetRequiredTransformation(string newRequiredTransformation) => requiredTransformation = newRequiredTransformation;
+    public void SetRequiredTransformation(string newRequiredTransformation) => requiredTransformation = newRequiredTransformation;  
     public string GetRequiredTransformation => requiredTransformation;
 }
