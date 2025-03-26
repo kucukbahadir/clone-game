@@ -2,11 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitManager : MonoBehaviour
+public class UnitManager : MonoBehaviourSingleton<UnitManager>
 {
     [SerializeField] private BaseUnit currentUnit;
 
     private List<BaseUnit> units;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     void Start()
     {
@@ -59,4 +64,5 @@ public class UnitManager : MonoBehaviour
     }
 
     private BaseUnit GetNextUnit(int currentIndex) => currentIndex + 1 == units.Count ? units[0]: units[currentIndex + 1];
+    public BaseUnit GetCurrentUnit => currentUnit;
 }

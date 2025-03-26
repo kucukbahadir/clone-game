@@ -4,5 +4,6 @@ public enum ActionTypes
 {
     Move,
     Clone,
-    Transform
+    Transform,
+    Interact
 }
