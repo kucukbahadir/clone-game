@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44b6f89d0d384a74c82a2b2f1c198157, type: 3}
-  m_Name: Lamp2
+  m_Name: LightBulb
   m_EditorClassIdentifier: 
-  transformationName: Lamp2
-  transformationMesh: {fileID: 0}
+  transformationName: LightBulb
+  transformationMesh: {fileID: 7737713134000300890, guid: 105c0e15ef5c4c94385382b6fac84e1f, type: 3}
