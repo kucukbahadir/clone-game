@@ -7,7 +7,7 @@ public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
     [SerializeField] private bool interruptible;
-    [SerializeField]protected Animator _animator;
+    protected Animator _animator;
     protected BaseUnit _unitReference;
 
     protected virtual void Awake()
