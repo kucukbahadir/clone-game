@@ -539,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477525504475180077, guid: f2f020525164c8640b3d0752eef0c1fe, type: 3}
       propertyPath: requiredTransformation
-      value: Lamp
+      value: LightBulb
       objectReference: {fileID: 0}
     - target: {fileID: 6920743031213293258, guid: f2f020525164c8640b3d0752eef0c1fe, type: 3}
       propertyPath: m_Name

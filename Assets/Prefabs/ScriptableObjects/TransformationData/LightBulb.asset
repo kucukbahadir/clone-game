@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LightBulb
   m_EditorClassIdentifier: 
   transformationName: LightBulb
-  transformationMesh: {fileID: 7737713134000300890, guid: 105c0e15ef5c4c94385382b6fac84e1f, type: 3}
+  transformationMesh: {fileID: 7210845435848185858, guid: 105c0e15ef5c4c94385382b6fac84e1f, type: 3}

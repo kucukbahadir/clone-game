@@ -7,7 +7,7 @@ public abstract class BaseAction : MonoBehaviour
 {
     [SerializeField] private ActionTypes actionType;
     [SerializeField] private bool interruptible;
-    protected Animator _animator;
+    [SerializeField]protected Animator _animator;
     protected BaseUnit _unitReference;
 
     protected virtual void Awake()
@@ -26,6 +26,7 @@ public abstract class BaseAction : MonoBehaviour
     public bool IsInterruptible() => interruptible;
 
     public virtual void ActionGotInterrupted(){}
+    public void SetAnimator(Animator newAnimator) => _animator = newAnimator;
 
     public new string ToString() => this.GetType().Name;
 

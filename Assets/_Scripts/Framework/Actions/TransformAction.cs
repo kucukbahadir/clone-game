@@ -4,11 +4,17 @@ using UnityEngine;
 public class TransformAction : BaseAction
 {
     public static EventHandler<Action<TransformationData>> OnTransformationAction;
-    public static EventHandler<string> OnNewTransformation;
+    public EventHandler<TransformationEventArg> OnNewTransformation;
     
     [SerializeField] private GameObject defaultCloneGraphics;
 
     private GameObject _currentTransformation;
+    private Animator defaultAnimator;
+
+    private void Start()
+    {
+        defaultAnimator = _animator;
+    }
 
     public override void TakeAction(Action OnActionComplete)
     {
@@ -22,17 +28,17 @@ public class TransformAction : BaseAction
         {
             Destroy(_currentTransformation);
             defaultCloneGraphics.SetActive(true);
-            OnNewTransformation?.Invoke(this, transformationData.GetTransformationName);
+            OnNewTransformation?.Invoke(this, new TransformationEventArg(null, defaultAnimator));
             _OnActionComplete?.Invoke();
             return;
         }
 
         defaultCloneGraphics.SetActive(false);
         Destroy(_currentTransformation);
-        _currentTransformation = Instantiate(transformationData.GetTransformationMesh);
+        _currentTransformation = Instantiate(transformationData.GetTransformationMesh, transform.position, transform.rotation);
         _currentTransformation.transform.SetParent(transform);
-        _currentTransformation.transform.position = transform.position;
-        OnNewTransformation?.Invoke(this, transformationData.GetTransformationName);
+        var transformationAnimator = _currentTransformation.GetComponent<Animator>();
+        OnNewTransformation?.Invoke(this, new TransformationEventArg(transformationData.GetTransformationName, transformationAnimator));
 
         _OnActionComplete?.Invoke();
     }
