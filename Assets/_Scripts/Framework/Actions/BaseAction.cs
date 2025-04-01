@@ -1,6 +1,4 @@
 using System;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 public abstract class BaseAction : MonoBehaviour
@@ -26,6 +24,7 @@ public abstract class BaseAction : MonoBehaviour
     public bool IsInterruptible() => interruptible;
 
     public virtual void ActionGotInterrupted(){}
+    public void SetAnimator(Animator newAnimator) => _animator = newAnimator;
 
     public new string ToString() => this.GetType().Name;
 

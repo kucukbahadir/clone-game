@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class UnitClone : BaseUnit
@@ -16,15 +15,24 @@ public class UnitClone : BaseUnit
 
     private void Start()
     {
-        TransformAction.OnNewTransformation += OnNewTransformation;
+        foreach (var action in _unitActions)
+        {
+            if (action.GetActionType() != ActionTypes.Transform) continue;
+            
+            var transformAction = (TransformAction)action;
+            transformAction.OnNewTransformation += OnNewTransformation;
+        }
     }
 
-    private void OnNewTransformation(object sender, string newTransformationName)
+    private void OnNewTransformation(object sender, TransformationEventArg transformationEventArg)
     {
-        currentTransformation = newTransformationName != null ? newTransformationName : "Default";
+        currentTransformation = transformationEventArg.transformationName != null ? transformationEventArg.transformationName : "Default";
+
+        foreach (var action in _unitActions)
+        {
+            action.SetAnimator(transformationEventArg.transformationAnimator);
+        }
     }
 
     public string GetCurrentTransformation => currentTransformation;
-
-    void OnDisable() => TransformAction.OnNewTransformation -= OnNewTransformation;
 }

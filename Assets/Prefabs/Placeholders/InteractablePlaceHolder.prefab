@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableUI: {fileID: 7240643570857093320}
-  requiredTransformation: Lamp
+  requiredTransformation: Battery
 --- !u!1001 &3511912294145863458
 PrefabInstance:
   m_ObjectHideFlags: 0
