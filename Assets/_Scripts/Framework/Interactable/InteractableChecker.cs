@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableChecker : MonoBehaviour
 {
-    [SerializeField] private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
+    private List<Interactable> _currentInteractablesInRange = new List<Interactable>();
 
     private Interactable _closestInteractable;
 
