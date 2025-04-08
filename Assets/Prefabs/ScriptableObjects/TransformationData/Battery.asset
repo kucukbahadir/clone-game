@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Battery
   m_EditorClassIdentifier: 
   transformationName: Battery
-  transformationMesh: {fileID: 0}
+  transformationMesh: {fileID: 2932579374255657688, guid: 844554ec1e60e7747909ad184ddb2540, type: 3}
