@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2403866870991109117}
   - component: {fileID: 1149545352956941897}
+  - component: {fileID: 3042271028938925745}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -50,6 +51,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpenMaterial: {fileID: 2100000, guid: be868c0c3cb28e44185990f581edfa7d, type: 2}
   doorMesh: {fileID: 2747749726885781306}
+  NextScene: {fileID: 102900000, guid: 1c9b91d647dc1bc478ec5fa5d40fa612, type: 3}
+  doorBoxCollider: {fileID: 3042271028938925745}
+--- !u!65 &3042271028938925745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234999153582421891}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.969188, z: 0.88239765}
+  m_Center: {x: 0, y: 1.9680938, z: 0.058801174}
 --- !u!1 &2747749726885781306
 GameObject:
   m_ObjectHideFlags: 0

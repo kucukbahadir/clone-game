@@ -403,6 +403,7 @@ MonoBehaviour:
   actionType: 1
   interruptible: 0
   unitClonePrefab: {fileID: 4185516122245272929, guid: f0109d9aa6f113e4889819ca82a42014, type: 3}
+  maxCLoneAmount: 5
 --- !u!114 &8498959944997092560
 MonoBehaviour:
   m_ObjectHideFlags: 0

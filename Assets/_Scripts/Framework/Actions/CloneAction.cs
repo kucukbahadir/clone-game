@@ -5,9 +5,9 @@ using UnityEngine;
 public class CloneAction : BaseAction
 {
     [SerializeField] private GameObject unitClonePrefab;
+    [SerializeField] private int maxCLoneAmount = 5;
 
     private int _cloneUnitAmount = 0;
-    [SerializeField] private int maxCLoneAmount = 5;
     public override void TakeAction(Action OnActionComplete)
     {
         _OnActionComplete = OnActionComplete;

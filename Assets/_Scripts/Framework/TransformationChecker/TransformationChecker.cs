@@ -18,6 +18,8 @@ public class TransformationChecker : Interactable
         }
 
         print("good transformation");
+        _isInteractable = false;
+        OnCorrectInteraction?.Invoke(this, null);
         OnRightInteraction?.Invoke();
     }
 

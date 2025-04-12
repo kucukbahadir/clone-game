@@ -13,6 +13,17 @@ public class InteractableChecker : MonoBehaviour
     private void Start()
     {
         UnitManager.Instance.OnSwitchToNewUnit += OnSwitchUnit;
+        Interactable.OnCorrectInteraction += OnCorrectInteraction;
+    }
+
+    private void OnCorrectInteraction(object sender, EventArgs e)
+    {
+        var interactable = (Interactable)sender;
+        if(interactable != _closestInteractable) return;
+
+        interactable.OutOfRange();
+        _currentInteractablesInRange.Remove(interactable);
+        _closestInteractable = null;
     }
 
     private void OnSwitchUnit(object sender, EventArgs e)
@@ -45,6 +56,8 @@ public class InteractableChecker : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<Interactable>(out var interactable)) return;
+
+        if(!interactable.GetIsInteractable) return;
 
         _currentInteractablesInRange.Add(interactable);
 

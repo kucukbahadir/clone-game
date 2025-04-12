@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -6,6 +8,8 @@ public class Door : MonoBehaviour
 
     [SerializeField] private Material doorOpenMaterial;
     [SerializeField] private GameObject doorMesh;
+    [SerializeField] private SceneAsset NextScene;
+    [SerializeField] private BoxCollider doorBoxCollider;
 
     private MeshRenderer _renderer;
 
@@ -17,5 +21,13 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         _renderer.material = doorOpenMaterial;
+        doorBoxCollider.enabled = true;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(!other.TryGetComponent<BaseUnit>(out var unit)) return;
+
+        SceneManager.LoadScene(NextScene.name);
     }
 }
