@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TransformationChecker : Interactable
 {
     [SerializeField, HideInInspector]private string requiredTransformation;
+
+    public UnityEvent OnRightInteraction;
 
     public override void OnInteract(object sender)
     {
@@ -15,6 +18,7 @@ public class TransformationChecker : Interactable
         }
 
         print("good transformation");
+        OnRightInteraction?.Invoke();
     }
 
     public void SetRequiredTransformation(string newRequiredTransformation) => requiredTransformation = newRequiredTransformation;  
