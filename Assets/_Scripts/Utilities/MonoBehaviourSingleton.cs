@@ -10,10 +10,10 @@ public class MonoBehaviourSingleton<T>: MonoBehaviour where T : class
     {
         if (Instance != null)
         {
-            Debug.LogWarning($"The {gameObject.GetComponent<T>()} already exist in the scene " + gameObject.name);
             Destroy(gameObject);
         }
         
         Instance = gameObject.GetComponent<T>();
+        DontDestroyOnLoad(gameObject);
     }
 }

@@ -92,4 +92,10 @@ public class InteractableChecker : MonoBehaviour
     }
 
     public Interactable GetClosestInteractable => _closestInteractable;
+
+    private void OnDisable()
+    {
+        UnitManager.Instance.OnSwitchToNewUnit -= OnSwitchUnit;   
+        Interactable.OnCorrectInteraction -= OnCorrectInteraction; 
+    }
 }

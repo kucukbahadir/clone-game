@@ -8,10 +8,17 @@ public class BaseUnit : MonoBehaviour
     protected BaseAction currentAction;
     protected BaseUnit _unitReference;
 
+    public static EventHandler OnBaseUnitSpawnIn;
+
     protected virtual void Awake()
     {
         _unitActions = GetComponents<BaseAction>();
         _unitReference = this;
+    }
+
+    private void Start()
+    {
+        OnBaseUnitSpawnIn?.Invoke(this, null);
     }
 
     public void TryDoingAction(ActionTypes actionType)
