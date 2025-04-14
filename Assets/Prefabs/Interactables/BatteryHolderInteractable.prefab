@@ -70,6 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableUI: {fileID: 1513970223494954558}
   requiredTransformation: Battery
+  OnRightInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &4739348721960778196
 PrefabInstance:
   m_ObjectHideFlags: 0
