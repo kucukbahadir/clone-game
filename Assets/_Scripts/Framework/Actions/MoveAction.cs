@@ -26,7 +26,6 @@ public class MoveAction : BaseAction
     {
         if (!_isBusy) return;
         _moveDirection = InputHandler.Instance.GetMoveValue();
-        print(InputHandler.Instance.GetMoveValue());
 
         if (_moveDirection == Vector2.zero) 
         {

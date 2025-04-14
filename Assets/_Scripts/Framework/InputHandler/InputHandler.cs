@@ -67,6 +67,4 @@ public class InputHandler : MonoBehaviourSingleton<InputHandler>
     }
 
     public Vector2 GetMoveValue() => _playerInputMap.Gameplay.Move.ReadValue<Vector2>();
-
-    //private void OnDisable() => _playerInputMap.Disable();
 }
