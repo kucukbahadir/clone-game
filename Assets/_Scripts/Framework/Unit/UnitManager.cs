@@ -28,9 +28,8 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
     private void OnBaseUnitSpawnIn(object sender, EventArgs e)
     {
         currentUnit = (BaseUnit)sender;
+        units[0] = currentUnit;
     }
-
-
 
     private void OnInput(object sender, ActionTypes actionType)
     {
