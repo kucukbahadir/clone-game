@@ -39,4 +39,9 @@ public class ActionInputUIHandler : MonoBehaviour
             ActionInputUI.gameObject.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        UnitManager.Instance.OnSwitchToNewUnit -= OnSwitchToNewUnit;
+    }
 }
