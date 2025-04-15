@@ -1115,7 +1115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345689635520560936, guid: cbaf089c676bf464f902387fd8217b14, type: 3}
       propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenDoor
+      value: CheckInteractables
       objectReference: {fileID: 0}
     - target: {fileID: 8345689635520560936, guid: cbaf089c676bf464f902387fd8217b14, type: 3}
       propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1336,6 +1336,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 418023613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335493078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+  m_PrefabInstance: {fileID: 1365502716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8101b336feaaef48ba9e793c9951af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1365502716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1344,6 +1355,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 354499661254848497}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckInteractables
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828181299149219952, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
+      propertyPath: OnRightInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3868268881765758968, guid: 4f176f148596aa744b11e45a0d4d863e, type: 3}
       propertyPath: m_Name
       value: LampHolder
@@ -1558,6 +1597,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703281161}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1738757848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8345689635520560936, guid: cbaf089c676bf464f902387fd8217b14, type: 3}
+  m_PrefabInstance: {fileID: 770551539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8101b336feaaef48ba9e793c9951af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1884646540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1706,18 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 102900000, guid: d9585e655f9bfb94a8273b1d4a825fa7, type: 3}
+    - target: {fileID: 1149545352956941897, guid: 55a8083836f330a42834221988847175, type: 3}
+      propertyPath: requiredInteractables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149545352956941897, guid: 55a8083836f330a42834221988847175, type: 3}
+      propertyPath: 'requiredInteractables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1738757848}
+    - target: {fileID: 1149545352956941897, guid: 55a8083836f330a42834221988847175, type: 3}
+      propertyPath: 'requiredInteractables.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1335493078}
     - target: {fileID: 2234999153582421891, guid: 55a8083836f330a42834221988847175, type: 3}
       propertyPath: m_Name
       value: Door
@@ -1702,7 +1764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3042271028938925745, guid: 55a8083836f330a42834221988847175, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

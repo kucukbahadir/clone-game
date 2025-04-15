@@ -1360,6 +1360,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103192d058f2afc4d811de8301bb6366, type: 3}
+--- !u!114 &1187098057 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8345689635520560936, guid: cbaf089c676bf464f902387fd8217b14, type: 3}
+  m_PrefabInstance: {fileID: 770551539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8101b336feaaef48ba9e793c9951af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263754044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,6 +1754,14 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 102900000, guid: f2f189d839bc17345bea258b20289249, type: 3}
+    - target: {fileID: 1149545352956941897, guid: 55a8083836f330a42834221988847175, type: 3}
+      propertyPath: requiredInteractables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149545352956941897, guid: 55a8083836f330a42834221988847175, type: 3}
+      propertyPath: 'requiredInteractables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1187098057}
     - target: {fileID: 2234999153582421891, guid: 55a8083836f330a42834221988847175, type: 3}
       propertyPath: m_Name
       value: Door

@@ -36,7 +36,6 @@ public class TransformationCheckerEditor : Editor
     {
         base.OnInspectorGUI();   
 
-        EditorGUILayout.Space(5);
         EditorGUI.BeginChangeCheck();
         transformationIndex = EditorGUILayout.Popup("Required transformation",transformationIndex, _transformationNames.ToArray());
         if(EditorGUI.EndChangeCheck())
