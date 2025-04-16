@@ -51,8 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpenMaterial: {fileID: 2100000, guid: be868c0c3cb28e44185990f581edfa7d, type: 2}
   doorMesh: {fileID: 2747749726885781306}
-  NextScene: {fileID: 102900000, guid: 1c9b91d647dc1bc478ec5fa5d40fa612, type: 3}
+  NextScene: {fileID: 102900000, guid: d9585e655f9bfb94a8273b1d4a825fa7, type: 3}
   doorBoxCollider: {fileID: 3042271028938925745}
+  requiredInteractables:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &3042271028938925745
 BoxCollider:
   m_ObjectHideFlags: 0
