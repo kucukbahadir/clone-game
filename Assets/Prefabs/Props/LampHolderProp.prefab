@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4150377369132842563}
   - component: {fileID: 5586924112960638385}
   - component: {fileID: 3831657026182344323}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampHolderProp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3081771708197903644}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -95,6 +95,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4150377369132842563}
     m_Modifications:
+    - target: {fileID: 2172571282885699076, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c310c37b16f543c488804b517479d2bf, type: 2}
+    - target: {fileID: 2856658360071605243, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3385346583826871209, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -135,9 +143,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4999637963878822983, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8228900629089862910, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
       propertyPath: m_Name
       value: LightBulbProp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228900629089862910, guid: 8d69e560e545a3a43a94592041dcf268, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
