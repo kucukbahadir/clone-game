@@ -52,4 +52,10 @@ public class TransformationSystem : MonoBehaviour
             _callBackAction?.Invoke(transformationData);
         }
     }
+
+    private void OnDisable()
+    {
+        TransformAction.OnTransformationAction -= OnTransformationActionUsed;
+        transformationUI.OnNewTransformationSelected -= OnNewTransformationSelected;
+    }
 }

@@ -53,4 +53,9 @@ public class TransformationUI : MonoBehaviour
     {
         holder.SetActive(false);
     }
+
+    private void OnDisable()
+    {
+        TransformationUISlot.OnTransformationSelected -= OnTransformationSelected;       
+    }
 }

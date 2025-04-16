@@ -22,6 +22,13 @@ public class UnitManager : MonoBehaviourSingleton<UnitManager>
         InputHandler.Instance.OnAnyActionInput += OnInput;
         InputHandler.Instance.OnSwitchUnitInput += OnSwitchUnitInput;
         UnitClone.OnUnitCloneSpawn += OnUnitCloneSpawn;
+        BaseUnit.OnBaseUnitSpawnIn += OnBaseUnitSpawnIn;
+    }
+
+    private void OnBaseUnitSpawnIn(object sender, EventArgs e)
+    {
+        currentUnit = (BaseUnit)sender;
+        units[0] = currentUnit;
     }
 
     private void OnInput(object sender, ActionTypes actionType)
