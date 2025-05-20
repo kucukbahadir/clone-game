@@ -5,14 +5,12 @@ using UnityEditor;
 
 public class EduanaHandler : MonoBehaviour
 {
-    [SerializeField] private string keywordName;
     private string apiBase = "http://localhost:8080/";
-    private string apiBaseKeywords = "http://localhost:8080/keywords";
 
     public void GetInfo()
     {
-        StartCoroutine(FetchKeywords(apiBase));
-        StartCoroutine(FetchKeywords(apiBaseKeywords));       
+        //StartCoroutine(FetchKeywords(apiBase));
+        StartCoroutine(SendKeywords(apiBase));
     }
 
     private IEnumerator FetchKeywords(string apiBasePath)
@@ -32,4 +30,30 @@ public class EduanaHandler : MonoBehaviour
         }
 
     }
+
+    private IEnumerator SendKeywords(string apiBasePath)
+    {
+        var newKeywords = new keywords();
+        var json = JsonUtility.ToJson(newKeywords);
+        print(newKeywords.keywordName);
+        var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+        var request = new UnityWebRequest(apiBasePath, "PUT");
+
+
+        request.uploadHandler = new UploadHandlerRaw(bytes);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to send progress.");
+        }
+    }
+}
+
+public class keywords
+{
+    public string keywordName = "jsonBorn";
 }
