@@ -3,17 +3,25 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 public class EduanaHandler : MonoBehaviour
 {
+    [SerializeField] private List<string> keywords = new List<string>();
     private string apiBase = "http://localhost:8080/";
 
-    public void GetInfo()
+    public void HandleFetchKeywords()
     {
-        //StartCoroutine(FetchKeywords(apiBase));
-        //StartCoroutine(SendKeywords(apiBase));
+        StartCoroutine(FetchKeywords(apiBase));
     }
 
+    public void HandleSendingData()
+    {
+        StartCoroutine(SendKeywords(apiBase));
+    }
+
+    [ExecuteAlways]
     private IEnumerator FetchKeywords(string apiBasePath)
     {
         var request = UnityWebRequest.Get(apiBasePath);
@@ -22,42 +30,52 @@ public class EduanaHandler : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            var json = request.downloadHandler.text;
-            print(json);
+            var requestText = request.downloadHandler.text.Split(',', '"', '[', ']', ' ')
+                                    .Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
+
+
+            keywords.Clear();
+
+            foreach (var keyword in requestText)
+            {
+                keywords.Add(keyword);
+            }
+
+            print("Request handled successfully");
         }
         else
         {
-            print("error");
+            Debug.LogError("Failed to get keywords. Request result: " + request.result);
         }
 
     }
 
-    // private IEnumerator SendKeywords(string apiBasePath)
-    // {
-    //     //var newKeywords = new keywords();
-    //     var json = JsonUtility.ToJson(newKeywords);
-    //     print(newKeywords.keywordName);
-    //     var bytes = System.Text.Encoding.UTF8.GetBytes(json);
-    //     var request = new UnityWebRequest(apiBasePath, "PUT");
+    private IEnumerator SendKeywords(string apiBasePath)
+    {
+        var keywordsClass = new keywords();
+        keywordsClass.myKeywords = keywords.ToArray();
+        var json = JsonUtility.ToJson(keywordsClass);
+        var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+        var request = new UnityWebRequest(apiBasePath, "PUT");
 
 
-    //     request.uploadHandler = new UploadHandlerRaw(bytes);
-    //     request.downloadHandler = new DownloadHandlerBuffer();
-    //     request.SetRequestHeader("Content-Type", "application/json");
+        request.uploadHandler = new UploadHandlerRaw(bytes);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
 
-    //     yield return request.SendWebRequest();
+        yield return request.SendWebRequest();
 
-    //     if (request.result != UnityWebRequest.Result.Success)
-    //     {
-    //         Debug.LogError("Failed to send progress.");
-    //     }
-    // }
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to send progress.");
+        }
+    }
 }
 
-// public class keywords
-// {
-//     public string keywordName = "jsonBorn";
-// }
+public class keywords
+{
+    public string[] myKeywords;
+}
 
 
 //Method die aangroepen word als we keywords van de back-end willen hebben

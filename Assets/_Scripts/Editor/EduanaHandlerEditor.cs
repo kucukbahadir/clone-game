@@ -14,9 +14,14 @@ public class EduanaHandlerEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        if (GUILayout.Button("back end test"))
+        if (GUILayout.Button("Fetch keywords", GUILayout.Height(30)))
         {
-            _eduanaHandler.GetInfo();
+            _eduanaHandler.HandleFetchKeywords();
+        }
+
+        if (GUILayout.Button("Send keywords", GUILayout.Height(30)))
+        {
+            _eduanaHandler.HandleSendingData();
         }
     }
 }
