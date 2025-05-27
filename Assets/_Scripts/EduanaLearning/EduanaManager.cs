@@ -7,12 +7,13 @@ public class EduanaManager : MonoBehaviour
 {
     public static EduanaManager Instance;
 
+    [SerializeField] private int minimumKeywordAmountBeforeFetching = 2;
+
     [SerializeField] private TextAsset testJsonFile;
     [SerializeField] private List<Keyword> keywords = new List<Keyword>();
 
-    [SerializeField] private Keyword _currentKeyword;
-    [SerializeField] private int _currentKeywordIndex;
-    [SerializeField] private int _currentQuestionIndex;
+    private Keyword _currentKeyword;
+    private int _currentQuestionIndex;
 
     private void Awake()
     {
@@ -39,16 +40,36 @@ public class EduanaManager : MonoBehaviour
         SetKeywordsInKeywordList(keywordsContainer);
     }
 
+    private KeywordsContainer DeconstructJson(string JsonString)
+    {
+        return JsonConvert.DeserializeObject<KeywordsContainer>(JsonString);
+    }
+
     public void GetNextQuestion(Action<Question> callbackAction)
     {
+        if (_currentQuestionIndex >= _currentKeyword.questions.Length)
+        {
+            var nextKeyword = GetNextKeyword();
+            _currentKeyword = nextKeyword;
+            _currentQuestionIndex = 0;
+        }
         var nextQuestion = _currentKeyword.questions[_currentQuestionIndex];
         _currentQuestionIndex++;
         callbackAction(nextQuestion);
     }
 
-    private KeywordsContainer DeconstructJson(string JsonString)
+    private Keyword GetNextKeyword()
     {
-        return JsonConvert.DeserializeObject<KeywordsContainer>(JsonString);
+        keywords.Remove(_currentKeyword);
+        CheckIfEnoughKeywords();
+
+        return keywords[0];
+    }
+
+    private void CheckIfEnoughKeywords()
+    {
+        if (keywords.Count > minimumKeywordAmountBeforeFetching) return;
+        FetchKeywords();
     }
 
     private void SetKeywordsInKeywordList(KeywordsContainer keywordsContainer)
@@ -64,14 +85,12 @@ public class EduanaManager : MonoBehaviour
         if (_currentKeyword != null && keywords.Count <= 0) return;
 
         _currentKeyword = keywords[0];
-        _currentKeywordIndex = 0;
         _currentQuestionIndex = 0;
     }
 
     public void TotalReset()
     {
         _currentKeyword = null;
-        _currentKeywordIndex = 0;
         _currentQuestionIndex = 0;     
 
         keywords.Clear();

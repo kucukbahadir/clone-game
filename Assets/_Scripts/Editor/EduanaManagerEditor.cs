@@ -15,6 +15,7 @@ public class EduanaManagerEditor : Editor
     {
         if (GUILayout.Button("Fetch keywords", GUILayout.Height(30)))
         {
+            _eduanaManager.TotalReset();
             _eduanaManager.FetchKeywords();
         }
 

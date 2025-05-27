@@ -25,4 +25,12 @@ public class QuestionGiver : MonoBehaviour
         answerIndex++;
         answer3Text.text = question.answers[answerIndex.ToString()].text;
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EduanaManager.Instance.GetNextQuestion(GetNextQuestionCallBack);            
+        }
+    }
 }
