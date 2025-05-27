@@ -56,6 +56,7 @@ public class EduanaHandler : MonoBehaviour
         keywordsClass.myKeywords = keywords.ToArray();
         var json = JsonUtility.ToJson(keywordsClass);
         var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+
         var request = new UnityWebRequest(apiBasePath, "PUT");
 
 
@@ -67,7 +68,7 @@ public class EduanaHandler : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError("Failed to send progress.");
+            Debug.LogError("Failed to send progress. Request result: " + request.result);
         }
     }
 }
