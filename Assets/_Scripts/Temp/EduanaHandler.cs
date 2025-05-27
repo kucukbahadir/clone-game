@@ -82,32 +82,5 @@ public class keywords
 //Method die aangroepen word als we keywords van de back-end willen hebben
 public class GetKeywords
 {
-    public Keyword[] keywords;
-}
-
-//The keyword class en de informatie
-public class Keyword
-{
-    public int id;
-    public string name;
-    public Question[] questions;
-
-    public Keyword(int id, string name, Question[] questions)
-    {
-        this.id = id;
-        this.name = name;
-        this.questions = questions;
-    }
-}
-
-public class Question
-{
-    public string text;
-    public Dictionary<string, Answer> answers;
-    public string correct_answer_id;
-}
-
-public class Answer
-{
-    public string text;
+    //public KeywordTest[] keywords;
 }
