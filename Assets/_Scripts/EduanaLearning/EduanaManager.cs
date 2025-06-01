@@ -1,19 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Networking;
 using System;
+using System.Collections;
 
 public class EduanaManager : MonoBehaviour
 {
     public static EduanaManager Instance;
 
     [SerializeField] private int minimumKeywordAmountBeforeFetching = 2;
-
-    [SerializeField] private TextAsset testJsonFile;
+    [SerializeField] private ApiURLContainer apiURLContainer;
+    [SerializeField] private bool useLocalJSON;
+    [SerializeField] private TextAsset localJSONFile;
     [SerializeField] private List<Keyword> keywords = new List<Keyword>();
 
     private Keyword _currentKeyword;
     private int _currentQuestionIndex;
+
 
     private void Awake()
     {
@@ -26,18 +30,57 @@ public class EduanaManager : MonoBehaviour
             Instance = this;
         }
 
-        FetchKeywords();
+        StartCoroutine(FetchKeywords());
         SetUpCurrentKeywordInfo();
     }
 
     [ExecuteAlways]
-    public void FetchKeywords()
+    public IEnumerator FetchKeywords()
     {
-        //Hierin word er naar de front-end of back-end geroepen // dit moet uiteindelijk niet leeg gemaakt worden maar waarneer alle vragen gedaan zijn dat hij dan zichzelf verwijder
+        if (useLocalJSON)
+        {
+            var keywordsContainer = DeconstructJson(localJSONFile.text);
 
-        var keywordsContainer = DeconstructJson(testJsonFile.text);
+            SetKeywordsInKeywordList(keywordsContainer);
+        }
+        else
+        {
+            var request = UnityWebRequest.Get(apiURLContainer.RequestApiURL);
+            yield return request.SendWebRequest();
 
-        SetKeywordsInKeywordList(keywordsContainer);
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                print("Request handled successfully");
+            }
+            else
+            {
+                Debug.LogError("Failed to get keywords. Request result: " + request.result);
+            }
+        }
+
+    }
+
+    public IEnumerator SendKeywords()
+    {
+        var keywordsClass = new KeywordProgress(10, true, DateTime.Now.ToString());
+        print(keywordsClass.answeredAt);
+
+        var json = JsonUtility.ToJson(keywordsClass);
+        var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+        var request = new UnityWebRequest(apiURLContainer.SendKeywordProgressApiURL, "PUT");
+
+
+        request.uploadHandler = new UploadHandlerRaw(bytes);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to send progress. Request result: " + request.result);
+        }
     }
 
     private KeywordsContainer DeconstructJson(string JsonString)
@@ -45,7 +88,7 @@ public class EduanaManager : MonoBehaviour
         return JsonConvert.DeserializeObject<KeywordsContainer>(JsonString);
     }
 
-    public void GetNextQuestion(Action<Question> callbackAction)
+    public void GetNextKeywordQuestion(Action<Question> callbackAction)
     {
         if (_currentQuestionIndex >= _currentKeyword.questions.Length)
         {

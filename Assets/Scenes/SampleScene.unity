@@ -655,7 +655,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumKeywordAmountBeforeFetching: 2
-  testJsonFile: {fileID: 4900000, guid: 26cc050c3d7ace94c830779e8d4fedb8, type: 3}
+  apiURLContainer: {fileID: 11400000, guid: be783544259b69448aefdd935efd3347, type: 2}
+  useLocalJSON: 1
+  localJSONFile: {fileID: 4900000, guid: 26cc050c3d7ace94c830779e8d4fedb8, type: 3}
   keywords: []
 --- !u!4 &1382088321
 Transform:

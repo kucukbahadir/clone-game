@@ -11,7 +11,7 @@ public class QuestionGiver : MonoBehaviour
 
     void Start()
     {
-        EduanaManager.Instance.GetNextQuestion(GetNextQuestionCallBack);
+        EduanaManager.Instance.GetNextKeywordQuestion(GetNextQuestionCallBack);
     }
 
     private void GetNextQuestionCallBack(Question question)
@@ -30,7 +30,7 @@ public class QuestionGiver : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            EduanaManager.Instance.GetNextQuestion(GetNextQuestionCallBack);            
+            EduanaManager.Instance.GetNextKeywordQuestion(GetNextQuestionCallBack);            
         }
     }
 }
