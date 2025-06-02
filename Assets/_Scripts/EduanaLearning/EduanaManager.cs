@@ -45,7 +45,7 @@ public class EduanaManager : MonoBehaviour
         }
         else
         {
-            var request = UnityWebRequest.Get(apiURLContainer.RequestApiURL);
+            var request = UnityWebRequest.Get(apiURLContainer.RequestKeywordsApiURL);
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -60,10 +60,9 @@ public class EduanaManager : MonoBehaviour
 
     }
 
-    public IEnumerator SendKeywords()
+    public IEnumerator SendKeywords(bool answerResult)
     {
-        var keywordsClass = new KeywordProgress(10, true, DateTime.Now.ToString());
-        print(keywordsClass.answeredAt);
+        var keywordsClass = new KeywordProgress(_currentKeyword.id, answerResult, DateTime.Now.ToString());
 
         var json = JsonUtility.ToJson(keywordsClass);
         var bytes = System.Text.Encoding.UTF8.GetBytes(json);
