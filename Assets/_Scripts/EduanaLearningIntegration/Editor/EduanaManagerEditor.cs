@@ -8,10 +8,22 @@ public class EduanaManagerEditor : Editor
     private Color _normalBackgroundColor;
     private Color _LabelBoxColor = Color.blue;
 
+    private SerializedProperty _minimumKeywordAmountBeforeFetching;
+    private SerializedProperty _apiURLContainer;
+    private SerializedProperty _useLocalJSON;
+    private SerializedProperty _localJSONFile;
+    private SerializedProperty _keywords;
+
     void OnEnable()
     {
         _eduanaManager = (EduanaManager)target;
         _normalBackgroundColor = GUI.backgroundColor;
+
+        _minimumKeywordAmountBeforeFetching = serializedObject.FindProperty("minimumKeywordAmountBeforeFetching");
+        _apiURLContainer = serializedObject.FindProperty("apiURLContainer");
+        _useLocalJSON = serializedObject.FindProperty("useLocalJSON");
+        _localJSONFile = serializedObject.FindProperty("localJSONFile");
+        _keywords = serializedObject.FindProperty("keywords");
     }
 
     public override void OnInspectorGUI()
@@ -29,14 +41,20 @@ public class EduanaManagerEditor : Editor
 
         GUI.backgroundColor = _LabelBoxColor;
 
-        // Begin een gekleurde box
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("Dit is een rode balk met tekst", EditorStyles.boldLabel);
         EditorGUILayout.EndVertical();
 
-        // Achtergrondkleur herstellen
         GUI.backgroundColor = _normalBackgroundColor;
 
-        base.OnInspectorGUI();
+        serializedObject.Update();
+
+        EditorGUILayout.PropertyField(_minimumKeywordAmountBeforeFetching);
+        EditorGUILayout.PropertyField(_apiURLContainer);
+        EditorGUILayout.PropertyField(_useLocalJSON);
+        EditorGUILayout.PropertyField(_localJSONFile);
+        EditorGUILayout.PropertyField(_keywords);
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
