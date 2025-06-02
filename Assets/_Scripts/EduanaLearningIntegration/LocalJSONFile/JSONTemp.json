@@ -25,22 +25,6 @@
                     "correct_answer_description": "Anode is the positive side and the cathode is negative"
                 }
             ]
-        },
-        {
-            "id": 201,
-            "name": "Electronics",
-            "questions": [
-                {
-                    "text": "Hallo Jimmy",
-                    "answers": {
-                        "1": {"text": "a"},
-                        "2": {"text": "b"},
-                        "3": {"text": "c"}
-                    },
-                    "correct_answer_id": "2",
-                    "correct_answer_description": "Anode is the positive side and the cathode is negative"
-                }
-            ]
         }
     ]
 }

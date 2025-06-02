@@ -5,10 +5,13 @@ using UnityEditor;
 public class EduanaManagerEditor : Editor
 {
     private EduanaManager _eduanaManager;
+    private Color _normalBackgroundColor;
+    private Color _LabelBoxColor = Color.blue;
 
     void OnEnable()
     {
         _eduanaManager = (EduanaManager)target;
+        _normalBackgroundColor = GUI.backgroundColor;
     }
 
     public override void OnInspectorGUI()
@@ -23,6 +26,16 @@ public class EduanaManagerEditor : Editor
         {
             _eduanaManager.TotalReset();
         }
+
+        GUI.backgroundColor = _LabelBoxColor;
+
+        // Begin een gekleurde box
+        EditorGUILayout.BeginVertical("box");
+        GUILayout.Label("Dit is een rode balk met tekst", EditorStyles.boldLabel);
+        EditorGUILayout.EndVertical();
+
+        // Achtergrondkleur herstellen
+        GUI.backgroundColor = _normalBackgroundColor;
 
         base.OnInspectorGUI();
     }
