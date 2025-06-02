@@ -13,6 +13,8 @@ public class EduanaManagerEditor : Editor
     private SerializedProperty _useLocalJSON;
     private SerializedProperty _localJSONFile;
     private SerializedProperty _keywords;
+    private SerializedProperty _autoFetch;
+    private SerializedProperty _showKeywordList;
 
     void OnEnable()
     {
@@ -24,37 +26,64 @@ public class EduanaManagerEditor : Editor
         _useLocalJSON = serializedObject.FindProperty("useLocalJSON");
         _localJSONFile = serializedObject.FindProperty("localJSONFile");
         _keywords = serializedObject.FindProperty("keywords");
+        _autoFetch = serializedObject.FindProperty("autoFetch");
+        _showKeywordList = serializedObject.FindProperty("showKeywordList");
     }
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
+        CreateLabelBox("Keyword fetch settings");
+
+        EditorGUILayout.PropertyField(_useLocalJSON);
+        if (_useLocalJSON.boolValue)
+        {
+            EditorGUILayout.PropertyField(_localJSONFile);
+        }
+        EditorGUILayout.PropertyField(_autoFetch);
+        if (_autoFetch.boolValue)
+        {     
+            EditorGUILayout.PropertyField(_minimumKeywordAmountBeforeFetching);
+        }
+
+        CreateLabelBox("Api settings");
+        EditorGUILayout.PropertyField(_apiURLContainer);
+
+        CreateLabelBox("Debug settings");
+        EditorGUILayout.PropertyField(_showKeywordList);
+        if (_showKeywordList.boolValue)
+        {
+            EditorGUILayout.PropertyField(_keywords);    
+        }
+        
         if (GUILayout.Button("Fetch keywords", GUILayout.Height(30)))
         {
             _eduanaManager.TotalReset();
             _eduanaManager.StartCoroutine(_eduanaManager.FetchKeywords());
         }
 
-        if (GUILayout.Button("Reset", GUILayout.Height(30)))
+        if (GUILayout.Button("Reset keyword list", GUILayout.Height(30)))
         {
             _eduanaManager.TotalReset();
         }
 
-        GUI.backgroundColor = _LabelBoxColor;
-
-        EditorGUILayout.BeginVertical("box");
-        GUILayout.Label("Dit is een rode balk met tekst", EditorStyles.boldLabel);
-        EditorGUILayout.EndVertical();
-
-        GUI.backgroundColor = _normalBackgroundColor;
-
-        serializedObject.Update();
-
-        EditorGUILayout.PropertyField(_minimumKeywordAmountBeforeFetching);
-        EditorGUILayout.PropertyField(_apiURLContainer);
-        EditorGUILayout.PropertyField(_useLocalJSON);
-        EditorGUILayout.PropertyField(_localJSONFile);
-        EditorGUILayout.PropertyField(_keywords);
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void CreateLabelBox(string label)
+    {
+        GUI.backgroundColor = _LabelBoxColor;
+
+        GUILayout.Space(5);
+
+        EditorGUILayout.BeginVertical("box");
+        GUILayout.Label(label, EditorStyles.boldLabel);
+        EditorGUILayout.EndVertical();
+
+        GUILayout.Space(5);
+
+        GUI.backgroundColor = _normalBackgroundColor;       
     }
 }

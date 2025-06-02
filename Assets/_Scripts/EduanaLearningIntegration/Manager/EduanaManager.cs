@@ -14,6 +14,8 @@ public class EduanaManager : MonoBehaviour
     [SerializeField] private bool useLocalJSON;
     [SerializeField] private TextAsset localJSONFile;
     [SerializeField] private List<Keyword> keywords = new List<Keyword>();
+    [SerializeField] private bool autoFetch = true;
+    [SerializeField] private bool showKeywordList;
 
     private Keyword _currentKeyword;
     private int _currentQuestionIndex;
@@ -87,7 +89,7 @@ public class EduanaManager : MonoBehaviour
         return JsonConvert.DeserializeObject<KeywordsContainer>(JsonString);
     }
 
-    public void GetNextKeywordQuestion(Action<Question> callbackAction)
+    public Question GetNextKeywordQuestion()
     {
         if (_currentQuestionIndex >= _currentKeyword.questions.Length)
         {
@@ -95,29 +97,35 @@ public class EduanaManager : MonoBehaviour
             _currentKeyword = nextKeyword;
             _currentQuestionIndex = 0;
         }
+
+        if (_currentKeyword == null)
+        {
+            Debug.LogError("There are no keywords in the keywords list anymore, so there is no question left");
+            return null;
+        }
+
         var nextQuestion = _currentKeyword.questions[_currentQuestionIndex];
         _currentQuestionIndex++;
-        callbackAction(nextQuestion);
+        return nextQuestion;
     }
 
     private Keyword GetNextKeyword()
     {
         keywords.Remove(_currentKeyword);
-        CheckIfEnoughKeywords();
 
-        return keywords[0];
-    }
+        if (autoFetch && keywords.Count <= minimumKeywordAmountBeforeFetching)
+        {
+            StartCoroutine(FetchKeywords());
+        }
 
-    private void CheckIfEnoughKeywords()
-    {
-        if (keywords.Count > minimumKeywordAmountBeforeFetching) return;
-        FetchKeywords();
+        return keywords.Count <= 0 ? null : keywords[0];
     }
 
     private void SetKeywordsInKeywordList(KeywordsContainer keywordsContainer)
     {
         foreach (var keyword in keywordsContainer.keywords)
         {
+            if (CheckIfKeywordIsInList(keyword)) continue;
             keywords.Add(keyword);
         }
     }
@@ -133,8 +141,20 @@ public class EduanaManager : MonoBehaviour
     public void TotalReset()
     {
         _currentKeyword = null;
-        _currentQuestionIndex = 0;     
+        _currentQuestionIndex = 0;
 
         keywords.Clear();
+    }
+
+    private bool CheckIfKeywordIsInList(Keyword target)
+    {
+        var isInList = false;
+
+        foreach (var keyword in keywords)
+        {
+            if (keyword.id == target.id) isInList = true;
+        }
+
+        return isInList;
     }
 }

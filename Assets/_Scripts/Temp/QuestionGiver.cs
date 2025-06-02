@@ -9,13 +9,16 @@ public class QuestionGiver : MonoBehaviour
     [SerializeField] private TextMeshProUGUI answer2Text;
     [SerializeField] private TextMeshProUGUI answer3Text;
 
+    private Question question;
+
     void Start()
     {
-        EduanaManager.Instance.GetNextKeywordQuestion(GetNextQuestionCallBack);
+        question = EduanaManager.Instance.GetNextKeywordQuestion();
     }
 
-    private void GetNextQuestionCallBack(Question question)
+    private void GetNextQuestionCallBack()
     {
+        if (question == null) return;
         var answerIndex = 1;
         questionText.text = question.text;
 
@@ -30,7 +33,9 @@ public class QuestionGiver : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            EduanaManager.Instance.GetNextKeywordQuestion(GetNextQuestionCallBack);            
+            question = EduanaManager.Instance.GetNextKeywordQuestion();
         }
+
+        GetNextQuestionCallBack();
     }
 }
